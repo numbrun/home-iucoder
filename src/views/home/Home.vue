@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-//import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 
 import Bus from '@/plugin/event-bus.js';
@@ -54,7 +54,7 @@ export default {
     };
   },
   computed: {
-    //...mapState(['categorySites']),
+    ...mapState(['categorySites']),
     categoryEmpty() {
       return this.categorySites.length === 0 ? true : false;
     },
@@ -76,9 +76,9 @@ export default {
     Bus.unSubEv(BusType.HOME_DESTROY_KEYUP_SLASH);
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
-    // ...mapActions(['initLocalStyleInfo']),
+    ...mapActions(['initLocalStyleInfo']),
 
     handleHomeSearchFucos(event) {
       Bus.pubEv(BusType.HOME_FUCOS, event.key);

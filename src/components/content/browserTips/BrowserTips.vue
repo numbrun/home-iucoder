@@ -29,17 +29,22 @@ export default {
       tips: [
         {
           name: 'chrome',
-          img: require('./img/chrome.png'),
+          // img: require('./img/chrome.png'),
+          img: '',
           url: 'https://www.google.com/intl/zh-CN/chrome/',
         },
         {
           name: 'edge',
-          img: require('./img/edge.png'),
+          // img: require('./img/edge.png'),
+          img: '',
+
           url: 'https://www.microsoft.com/zh-cn/edge',
         },
         {
           name: 'safari',
-          img: require('./img/safari.png'),
+          // img: require('./img/safari.png'),
+          img: '',
+
           url: 'https://support.apple.com/zh_CN/downloads/safari',
         },
       ],

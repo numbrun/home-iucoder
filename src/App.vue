@@ -1,8 +1,9 @@
 <template>
   <div id="app" :style="appStyle">
-    12321
-    <BrowserTips v-if="!isSupport"></BrowserTips>
-    <Wrap v-else> </Wrap>
+    <BrowserTips ></BrowserTips>
+    <Wrap > </Wrap>
+    <!-- <BrowserTips v-if="!isSupport"></BrowserTips>
+    <Wrap v-else> </Wrap> -->
   </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
 
     // 判断浏览器支持
     isSupport() {
-      let temp = 1
+      let temp = -1
       console.log('浏览器信息：' + temp);
       // let temp = this.TOOL.judgeIE();
       // console.log('浏览器信息：' + temp);
@@ -58,18 +59,21 @@ export default {
 
   async mounted() {
     // 优先处理应用配置
-    await this.initAppConfigInfo({
-      callback: () => {
-        let brandName = this.LODASH.get(this.appConfig, 'site.name');
-        if (brandName) {
-          document.title = brandName;
-        }
-      },
-    });
+    // await this.initAppConfigInfo(
+    //   // {
+
+    //   //   callback: () => {
+    //   //     let brandName = this.LODASH.get(this.appConfig, 'site.name');
+    //   //     if (brandName) {
+    //   //       document.title = brandName;
+    //   //     }
+    //   //   },
+    //   // }
+    // );
 
     // 加载处理用户信息
-    await this.initLocalUserInfo();
-    await this.initLocalStyleInfo();
+    // await this.initLocalUserInfo();
+    // await this.initLocalStyleInfo();
 
     console.log('页面已挂载成功');
   },

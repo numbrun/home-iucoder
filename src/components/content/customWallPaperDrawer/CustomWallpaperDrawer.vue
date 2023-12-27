@@ -66,7 +66,7 @@
   </HsDrawer>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import HsDrawer from '@/components/content/drawer/Drawer.vue';
 
@@ -146,7 +146,7 @@ export default {
     };
   },
   computed: {
-    //...mapState(['user', 'themeConfig']),
+    ...mapState(['user', 'themeConfig']),
     displayPure() {
       let pureTemp = this.themeConfig.pure ? this.themeConfig.pure : [];
       let temp = this.pures.concat(pureTemp);
@@ -164,7 +164,7 @@ export default {
     this.sliderLightness = this.user.config.bgLightness;
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     changeFilter(val) {

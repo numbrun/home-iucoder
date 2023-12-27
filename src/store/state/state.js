@@ -16,7 +16,8 @@ export default {
     records: [],
     config: {
       // 色值｜图片链接| base64
-      bg: require('@/assets/img/wallpaper/3.jpeg'),
+      bg: '',
+      // bg: require('@/assets/img/wallpaper/3.jpeg'),
       headerFontColor: '#ffffff',
       // 背景模糊度 0-10
       bgFilter: 0,
@@ -63,12 +64,13 @@ export default {
     },
     site: {
       name: '几百块',
-      logoURL: require('@/assets/img/logo/favicon.svg'),
+      logoURL: '',
+      // logoURL: require('@/assets/img/logo/favicon.svg'),
       redirectURL: 'http://huasen.cc/',
       guidePageName: '几百块guidePageName',
       guidePageUrl: 'http://huasen.cc/',
       footerHtml: '',
-      serviceQRCodeUrl: require('@/assets/img/logo/weixin.png'),
+      serviceQRCodeUrl:  '',
       openLabelClassification: false,
     },
   },

@@ -58,7 +58,8 @@ export default {
     },
     // 弹窗大小
     dialogWidth() {
-      return this.TOOL.handleSize(this.width);
+      return '420px'
+      // return this.TOOL.handleSize(this.width);
     },
     // 是否显示按钮
     showFooter() {
@@ -67,13 +68,15 @@ export default {
     // 全屏状态下，默认最小宽度
     dialogStyle() {
       // 如果不是全屏状态下，使用用户传入的width属性作为最小宽度
-      let minWidth = this.$attrs.fullscreen ? `${this.CONSTANT.appMinWidth}px` : this.TOOL.handleSize(this.width);
-      //
-      let maxHeight = this.$attrs.fullscreen ? 'calc(100% - 54px - 70px)' : this.TOOL.handleSize(this.maxHeight);
+      // let minWidth = this.$attrs.fullscreen ? `${this.CONSTANT.appMinWidth}px` : this.TOOL.handleSize(this.width);
+      // //
+      // let maxHeight = this.$attrs.fullscreen ? 'calc(100% - 54px - 70px)' : this.TOOL.handleSize(this.maxHeight);
 
       return {
-        '--dialogMinWidth': minWidth,
-        '--dialogBodyMaxHeight': maxHeight,
+        '--dialogMinWidth': '435px',
+        '--dialogBodyMaxHeight': 'calc(100% - 54px - 70px)',
+        // '--dialogMinWidth': minWidth,
+        // '--dialogBodyMaxHeight': maxHeight,
       };
     },
   },

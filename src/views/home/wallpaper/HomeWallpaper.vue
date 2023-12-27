@@ -22,18 +22,49 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      user: {
+        code: 1,
+        config: {
+          bg: "img/4.ad66b67a.jpeg",
+          bgFilter: 0,
+          bgLightness: 0,
+          headerFontColor: "#000000",
+          lightMode: false,
+          simpleMode: false,
+        },
+        headImg
+          :
+          "",
+        id
+          :
+          "localhost@qq.com",
+        name
+          :
+          "本地用户",
+        records
+          :
+          [],
+        token
+          :
+          ""
+      }
+    }
+  },
   computed: {
     //...mapState(['user']),
     wallpaperStyle() {
       let style = {};
       let config = this.user.config;
-      let tag = this.TOOL.judgeBgType(config.bg);
-      // 处理背景图片
-      if (tag === 'img' || tag === 'module' || tag === 'base64') {
-        style['backgroundImage'] = `url(${config.bg})`;
-      } else if (tag === 'color') {
-        style['backgroundColor'] = config.bg;
-      }
+      style['backgroundColor'] = `#eee`;
+      // let tag = this.TOOL.judgeBgType(config.bg);
+      // // 处理背景图片
+      // if (tag === 'img' || tag === 'module' || tag === 'base64') {
+      //   style['backgroundImage'] = `url(${config.bg})`;
+      // } else if (tag === 'color') {
+      //   style['backgroundColor'] = config.bg;
+      // }
       return style;
     },
     shadowStyle() {
@@ -59,6 +90,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+
   .bg {
     position: absolute;
     top: 0;
@@ -68,6 +100,7 @@ export default {
     background-position: center center;
     background-size: cover;
   }
+
   .bg-shadow {
     position: absolute;
     top: 0;
@@ -76,6 +109,7 @@ export default {
     height: 100%;
     background-color: var(--gray-1000);
   }
+
   .bg-fiiter {
     position: absolute;
     left: 0;
@@ -84,6 +118,7 @@ export default {
     bottom: 0;
   }
 }
+
 .fullscreen {
   width: 100% !important;
   height: 100% !important;

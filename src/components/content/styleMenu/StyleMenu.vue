@@ -67,7 +67,7 @@ export default {
       style[tag] = val;
       setStyleById(this.xpath, style);
       this.$store.dispatch('snapshoot');
-      this.$store.dispatch('initLocalStyleInfo');
+      //this.$store.dispatch('initLocalStyleInfo');
     },
 
     initStyle() {

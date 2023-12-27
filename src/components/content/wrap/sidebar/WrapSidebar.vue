@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import Bus from '@/plugin/event-bus.js';
 import { HOME_SCROLL_TO } from '@/plugin/event-type.js';
@@ -39,10 +39,10 @@ export default {
     };
   },
   computed: {
-    //...mapState(['showWrapSidebarSocket', 'appConfig']),
+    ...mapState(['showWrapSidebarSocket', 'appConfig']),
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     // 回到顶部

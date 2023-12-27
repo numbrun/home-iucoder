@@ -70,7 +70,7 @@
   </HsDialog>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import { getElementFormValidator } from '@/plugin/strategy.js';
 import HsDialog from '@/components/content/dialog/Dialog.vue';
@@ -113,7 +113,7 @@ export default {
     },
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     // 关闭登录面板

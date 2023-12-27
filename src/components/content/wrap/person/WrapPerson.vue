@@ -10,7 +10,8 @@
     <div class="wrap-person">
       <header class="information">
         <div class="head">
-          <img v-lazy="{ unload: require('@/assets/img/error/slogan.png') }" class="w-full h-full" :src="this.user.headImg" />
+          <img v-lazy="{ unload: require('@/assets/img/error/slogan.png') }" class="w-full h-full"
+            :src="this.user.headImg" />
         </div>
         <div class="name text">
           <div>{{ user.name || '暂无昵称' }}</div>
@@ -53,14 +54,14 @@
   </HsDrawer>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import HsDrawer from '@/components/content/drawer/Drawer.vue';
 export default {
   name: 'WrapPerson',
   components: { HsDrawer },
   computed: {
-    //...mapState(['user']),
+    ...mapState(['user']),
     headImgStyle() {
       let style = {};
       // 图片资源
@@ -81,7 +82,7 @@ export default {
     },
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     exit() {
@@ -141,6 +142,7 @@ export default {
   margin: 20px auto 0 auto;
   padding-bottom: 20px;
   background-color: var(--gray-0);
+
   .information {
     width: 90%;
     height: 80px;
@@ -148,12 +150,14 @@ export default {
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--gray-200);
+
     .head {
       width: 60px;
       height: 60px;
       border-radius: 50%;
       background-size: 100% 100%;
     }
+
     .name {
       flex: 1;
       font-size: 18px;
@@ -161,31 +165,38 @@ export default {
       color: var(--gray-600);
       margin-left: 20px;
     }
+
     i {
       font-size: 18px;
       cursor: pointer;
     }
   }
+
   main {
     width: 90%;
     max-height: 320px;
     margin: 10px auto;
     overflow-y: auto;
+
     ul {
       li {
         margin-top: 10px;
         display: flex;
         align-items: center;
+
         .left {
           flex: 1;
+
           .title {
             font-size: 14px;
           }
+
           .detail {
             font-size: 10px;
             color: var(--gray-400);
           }
         }
+
         .right {
           i {
             font-size: 20px;
@@ -195,5 +206,4 @@ export default {
       }
     }
   }
-}
-</style>
+}</style>

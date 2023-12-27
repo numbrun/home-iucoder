@@ -60,6 +60,7 @@
 import { AF } from '@/plugin/AF.js';
 import { jsonp } from '@/network/http.js';
 // import { mapState } from 'vuex';
+
 import Bus from '@/plugin/event-bus.js';
 import * as BusType from '@/plugin/event-type.js';
 
@@ -89,7 +90,7 @@ export default {
     };
   },
   computed: {
-    //...mapState(['user', 'sites']),
+    // ...mapState(['user', 'sites']),
     // 显示建议面板
     showIdeas() {
       return this.searchText && this.ideas.length !== 0 ? true : false;
@@ -140,7 +141,7 @@ export default {
   },
   mounted() {
     // 初始化皮肤主题数据
-    this.$store.dispatch('initLocalStyleInfo');
+    // this.$store.dispatch('initLocalStyleInfo');
     // 初始化事件总线
     this.initEventBus();
   },

@@ -17,16 +17,20 @@
 
 <script>
 // // import { mapState } from 'vuex';import navs from '@/config/nav.config.js';
+import navs from '@/config/nav.config.js';
+
 export default {
   name: 'WrapLeft',
   data() {
     return {
-      navs,
+      navs:navs
     };
   },
   computed: {
     //...mapState(['appConfig']),
     logoURL() {
+      return '1231221';
+
       return this.appConfig.site.logoURL;
     },
   },

@@ -7,7 +7,8 @@
 -->
 <template>
   <div v-rightMenu class="home-site">
-    <section :id="`site-anchor-${encodeURI(index)}`" v-for="(category, index) in categorySitesData" :key="`${category.typeName}-${index}`">
+    <section :id="`site-anchor-${encodeURI(index)}`" v-for="(category, index) in categorySitesData"
+      :key="`${category.typeName}-${index}`">
       <div v-rightMenu class="site-item">
         <header>
           <i class="category-icon relative left-px-2 iconfont icon-tag"></i>
@@ -15,18 +16,16 @@
           <div v-if="showTag(category)" class="w-full pb-px-4 my-px-4 overflow-x-auto overflow-y-hidden">
             <div class="inherit-bg tag-container flex items-center p-px-4 bg-gray-100 rounded-full">
               <!-- 默认占位标签 -->
-              <div class="inherit-bg flex-shrink-0 text-12px text text-center w-px-80 px-px-2 py-px-4 ml-px-6 first:ml-px-0 hover:bg-blue-400 hover:text-white transition rounded-full pointer" title="全部" :class="{ selected: category.selectedTag === '' }" @click="handleSelectTag(category, '')">
+              <div
+                class="inherit-bg flex-shrink-0 text-12px text text-center w-px-80 px-px-2 py-px-4 ml-px-6 first:ml-px-0 hover:bg-blue-400 hover:text-white transition rounded-full pointer"
+                title="全部" :class="{ selected: category.selectedTag === '' }" @click="handleSelectTag(category, '')">
                 全部
               </div>
               <!-- 其他标签 -->
               <div
                 class="inherit-bg flex-shrink-0 text-12px text text-center w-px-80 px-px-2 py-px-4 ml-px-6 first:ml-px-0 hover:bg-blue-400 hover:text-white transition rounded-full pointer"
-                v-for="tagText in category.allTags"
-                :key="tagText"
-                :title="tagText"
-                :class="{ selected: category.selectedTag === tagText }"
-                @click="handleSelectTag(category, tagText)"
-              >
+                v-for="tagText in category.allTags" :key="tagText" :title="tagText"
+                :class="{ selected: category.selectedTag === tagText }" @click="handleSelectTag(category, tagText)">
                 {{ tagText }}
               </div>
             </div>
@@ -34,9 +33,12 @@
         </header>
         <main>
           <ul v-balance>
-            <a class="relative site inherit-text" v-for="(site, i) in handleDisplaySites(category)" :key="`${site.url}-${i}`" :href="site.url" :title="site.describe" target="_blank">
+            <a class="relative site inherit-text" v-for="(site, i) in handleDisplaySites(category)"
+              :key="`${site.url}-${i}`" :href="site.url" :title="site.describe" target="_blank">
               <div class="pin-group absolute -top-px-6 right-px-0 w-full h-px-16 flex justify-end">
-                <div v-for="(pin, pinIndex) in handlePin(site)" :key="`${pin}-${pinIndex}`" :style="{ backgroundColor: LODASH.get(pinMap, pin + '.color') }" class="w-px-16 h-px-16 mr-px-2 text-12px text-gray-0 flex justify-center items-center rounded-full">
+                <div v-for="(pin, pinIndex) in handlePin(site)" :key="`${pin}-${pinIndex}`"
+                  :style="{ backgroundColor: LODASH.get(pinMap, pin + '.color') }"
+                  class="w-px-16 h-px-16 mr-px-2 text-12px text-gray-0 flex justify-center items-center rounded-full">
                   <template v-if="LODASH.get(pinMap, pin)">
                     {{ LODASH.get(pinMap, pin + '.label') }}
                   </template>
@@ -60,7 +62,8 @@
   </div>
 </template>
 <script>
-// import { mapState } from 'vuex';export default {
+import { mapState } from 'vuex'; 
+export default {
   name: 'HomeSite',
   data() {
     return {
@@ -86,7 +89,7 @@
     };
   },
   computed: {
-    //...mapState(['appConfig', 'categorySites']),
+    ...mapState(['appConfig', 'categorySites']),
 
     categorySitesData() {
       let data = this.LODASH.cloneDeep(this.categorySites) || [];
@@ -98,7 +101,9 @@
     },
   },
   mounted() {
+
     this.$store.dispatch('initLocalStyleInfo');
+
   },
   methods: {
     showTag(category) {
@@ -162,47 +167,59 @@
   position: relative;
   background-color: var(--gray-50);
   z-index: 1;
+
   section {
     width: calc(100% - 20px);
     margin: 10px auto 0 auto;
+
     &:first-of-type {
       margin-top: 0px;
     }
+
     .site-item {
       padding: 10px;
       border-radius: 2px;
       background-color: var(--gray-0);
       box-sizing: border-box;
+
       header {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+
         .category-icon {
           font-size: 20px;
           font-weight: 500;
         }
+
         .category-title {
           margin-left: 8px;
           font-size: 16px;
           font-weight: 500;
         }
+
         .selected {
           color: var(--gray-0);
           background-color: var(--blue-400);
         }
+
         .tag-container {
           min-width: max-content;
         }
       }
+
       main {
         ul {
           display: flex;
           flex-wrap: wrap;
+
           .site {
             margin-top: 10px;
+
             .pin-group {
               transition: transform 0.3s ease;
             }
+
             .site-card {
               position: relative;
               height: 50px;
@@ -215,6 +232,7 @@
               box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.2);
               transition: box-shadow 0.3s ease;
               transition: transform 0.3s ease;
+
               .img-group {
                 position: absolute;
                 left: 10px;
@@ -229,28 +247,34 @@
                 border-radius: 6px;
                 overflow: hidden;
                 z-index: 2;
+
                 img {
                   width: 100%;
                   height: 100%;
                 }
               }
+
               .text-group {
                 width: calc(100% - 50px);
                 display: block;
                 margin-left: 60px;
+
                 .name {
                   font-weight: 500;
                 }
+
                 .describe {
                   color: var(--gray-400);
                   font-size: 12px;
                 }
               }
             }
+
             &:hover {
               .pin-group {
                 transform: translateY(-2px);
               }
+
               .site-card {
                 transform: translateY(-2px);
                 box-shadow: 0 26px 40px -24px var(--gray-800);
@@ -261,16 +285,17 @@
       }
     }
   }
+
   // 动态插入样式名，实现锚点效果
   .active-anchor {
     header {
       .category-icon {
         color: var(--red-500) !important;
       }
+
       .category-title {
         color: var(--red-500) !important;
       }
     }
   }
-}
-</style>
+}</style>

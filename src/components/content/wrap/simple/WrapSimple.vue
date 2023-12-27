@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-//import { mapState, mapMutations, mapActions } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 import HomeSearch from '@/views/home/search/HomeSearch.vue';
 import HomeWallpaper from '@/views/home/wallpaper/HomeWallpaper.vue';
@@ -22,15 +22,15 @@ export default {
   name: 'WrapSimple',
   components: { HomeWallpaper, HomeSearch },
   computed: {
-    //...mapState(['user']),
+    ...mapState(['user']),
   },
   mounted() {
     this.initLocalStyleInfo();
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
-    // ...mapActions(['snapshoot', 'initLocalStyleInfo']),
+    ...mapActions(['snapshoot', 'initLocalStyleInfo']),
     closeSimpleMode() {
       this.commitAll({
         user: {

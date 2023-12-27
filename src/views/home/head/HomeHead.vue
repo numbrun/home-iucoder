@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import Clock from '@/components/common/clock/Clock.vue';
 import Weather from '@/components/common/weather/Weather.vue';
@@ -99,7 +99,7 @@ export default {
   },
 
   computed: {
-    //...mapState(['showWrapLeft', 'user']),
+    ...mapState(['showWrapLeft', 'user']),
     showGrossGlass() {
       return this.showMenu && document.body.clientWidth <= 1024 ? true : false;
     },
@@ -138,7 +138,7 @@ export default {
   },
 
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     querySites() {

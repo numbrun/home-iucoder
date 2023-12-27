@@ -63,7 +63,7 @@
   </div>
 </template>
 <script>
-// import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import { getElementFormValidator } from '@/plugin/strategy.js';
 
@@ -117,7 +117,7 @@ export default {
     };
   },
   computed: {
-    //...mapState(['user', 'config']),
+    ...mapState(['user', 'config']),
   },
   watch: {
     // 打开编辑面板时，关闭监听 / 聚焦搜索框事件。
@@ -130,7 +130,7 @@ export default {
     },
   },
   methods: {
-    // ...mapMutations(['commitAll']),
+    ...mapMutations(['commitAll']),
 
 
     openAddMode() {

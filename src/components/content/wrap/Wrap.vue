@@ -15,7 +15,7 @@
       <WrapPerson></WrapPerson>
       <WrapSimple v-show="simpleMode"></WrapSimple>
     </div>
-    <div v-if="showWrapFooter" v-html="appConfig.site.footerHtml" class="wrap-footer"></div>
+    <!-- <div v-if="showWrapFooter" v-html="appConfig.site.footerHtml" class="wrap-footer"></div> -->
   </div>
 </template>
 <script>
@@ -36,16 +36,19 @@ export default {
 
   data() {
     return {
-      navs,
+      navs:navs
     };
   },
 
   computed: {
     // //...mapState(['showWrapLeft', 'showWrapConnect', 'showWrapSidebar', 'user', 'appConfig']),
     simpleMode() {
+      return '12321'
       return this.user.config.simpleMode;
     },
     showWrapFooter() {
+      return '12321'
+
       return this.appConfig.site.footerHtml;
     },
   },
