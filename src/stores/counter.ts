@@ -10,3 +10,16 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
+
+export const useStore = defineStore('main', {
+  // 其他的配置项...
+  state: () => {
+    return {
+      // 定义状态
+    }
+  },
+  getters: {},
+  actions: {},
+})
+
+
