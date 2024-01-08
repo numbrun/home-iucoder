@@ -30,7 +30,8 @@ import 'ant-design-vue/dist/antd.css';
 import { message } from 'ant-design-vue';
 
 // svg-icon
-// import 'virtual:svg-icons-register'; // 引入雪碧图注册脚本，到这里雪碧图已经生成
+//vite-plugin-icons 是一个 Vite 插件，用于在项目中使用 SVG 图标。它会将 SVG 图标文件转换为 Vue 组件，并注册到应用程序中，使您可以在代码中以组件的形式使用这些图标。
+import 'virtual:svg-icons-register'; // 引入雪碧图注册脚本，到这里雪碧图已经生成
 import svgIcon from '@/icons/SvgIcon.vue';
 
 // antd-icon  //这里会极大变大打包文件

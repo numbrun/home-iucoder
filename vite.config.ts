@@ -1,18 +1,23 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import path, { resolve } from 'path';
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 // import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import AutoImport from 'unplugin-auto-import/vite'; // 第三方库声明文件自动插入（很重要！）
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // svg雪碧图插件
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    // vueSetupExtend(), // vue script setup syntax support the name attribute 再script标签中可以设置当前setup的name
+    // vueSetupExtend(), // vue script setup syntax support the name attribute 再script标签中可以设置当前setup的name,
+    createSvgIconsPlugin({
+      iconDirs: [path.resolve(process.cwd(), 'src/icons/common')], // 指定需要缓存的图标文件夹
+      symbolId: 'icon-[dir]-[name]' // 指定symbolId格式
+    }),
     AutoImport({
       imports: [
         'vue',
