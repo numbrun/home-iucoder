@@ -1,38 +1,18 @@
 import { fileURLToPath, URL } from 'node:url'
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+// import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-
-import path, { resolve } from 'path';
-import Components from 'unplugin-vue-components/vite';
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import vueSetupExtend from 'vite-plugin-vue-setup-extend';
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'; // svg雪碧图
-import AutoImport from 'unplugin-auto-import/vite'; // 第三方库声明文件自动插入
-
+import AutoImport from 'unplugin-auto-import/vite'; // 第三方库声明文件自动插入（很重要！）
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // plugins: [
-  //   vue(),
-  //   vueJsx(),
-  // ],
-  base: './', // 等同于vue-cli中publicPath基础路由，静态资源引用前正确路径
   plugins: [
     vue(),
-    vueSetupExtend(), // vue script setup syntax support the name attribute 再script标签中可以设置当前setup的name
     vueJsx(),
-    createSvgIconsPlugin({
-      iconDirs: [path.resolve(process.cwd(), 'src/icons/common')], // 指定需要缓存的图标文件夹
-      symbolId: 'icon-[dir]-[name]' // 指定symbolId格式
-    }),
-    // 按需加载插件
-    Components({
-      resolvers: [
-        AntDesignVueResolver()
-      ]
-    }),
+    // vueSetupExtend(), // vue script setup syntax support the name attribute 再script标签中可以设置当前setup的name
     AutoImport({
       imports: [
         'vue',
@@ -48,11 +28,8 @@ export default defineConfig({
     })
   ],
   resolve: {
-    // alias: {
-    //   '@': fileURLToPath(new URL('./src', import.meta.url)),
-    // }
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
       path: 'path-browserify' // 解决在浏览器中使用类似node原生path模块的问题
     }
   },

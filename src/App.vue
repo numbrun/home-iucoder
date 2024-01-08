@@ -1,7 +1,5 @@
 <template>
-  12321
   <router-view />
-  12321321321
   <video autoplay muted loop :src="$pinia.state.value.wallpaper.currentWallpaper.url" id="video"
     v-show="$pinia.state.value.wallpaper.currentWallpaper.atrribute === 'video'">
   </video>
@@ -13,7 +11,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      sk: 'haha'
+      sk: 'APP'
     };
   },
   beforeCreate() {

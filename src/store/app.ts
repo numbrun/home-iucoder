@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import router, { constantRoutes } from '@/router';
-import { RouterRowTy } from '~/router';
+// import { RouterRowTy } from '~/router';
 
-type LsRouteTy = Pick<RouterRowTy, 'name' | 'meta' | 'path'>
+type LsRouteTy = Pick<any, 'name' | 'meta' | 'path'>
 
 export const useAppStore = defineStore('app', {
   state: () => ({
@@ -24,7 +24,7 @@ export const useAppStore = defineStore('app', {
     }
   },
   actions: {
-    ADD_ASYNC_ROUTES(routeObj: RouterRowTy) {
+    ADD_ASYNC_ROUTES(routeObj: any) {
       this.$patch(state => {
         state.routes[0].children?.push(routeObj);
       });

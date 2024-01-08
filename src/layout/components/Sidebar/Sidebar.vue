@@ -33,7 +33,7 @@ import Link from './Link.vue';
 import AddGroupBtn from '@/components/AddGroupBtn.vue';
 import { isExternal, calcContrastColor } from '@/utils/validate';
 import { useWallpaperStore } from '@/store/wallpaper';
-import { RouterRowTy } from '~/router';
+// import { RouterRowTy } from '~/router';
 import router from '@/router';
 import { defineComponent } from "vue";
 
@@ -55,7 +55,7 @@ export default defineComponent({
       }
       return 'font-size: 20px; color: #eeeeee';
     },
-    deleteRoute(item: RouterRowTy) {
+    deleteRoute(item: any) {
       if (item.name === 'home') {
         this.$message.error('主页无法删除');
       } else {
