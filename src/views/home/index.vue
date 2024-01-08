@@ -2,24 +2,40 @@
   <div class="ya-matter flex flex-direction align-center">
     <header class="flex justify-center align-center">
       <SearchEngine class="se" />
-      <button type="button" @click="addNewWidget('https://files.codelife.cc/website/12306.svg', '12306')">Add
-        Widget</button>
+      <!-- <button type="button" @click="addNewWidget('https://files.codelife.cc/website/12306.svg', '12306')">
+        添加图标</button> -->
     </header>
-    <a-dropdown :trigger="['contextmenu']">
+    <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
       <main>
-        <section class="grid-stack beautiful-sm-scroll"></section>
+
+        <section class="grid-stack beautiful-sm-scroll">
+
+          <!-- <template v-for="item of homeList" :key="item">
+            <div class="grid-stack-item">
+              <div class="grid-stack-item-content flex flex-direction justify-around align-center">
+                <img :src="item.src" style="width: 4vw; height: 4vw; border-radius: 20px; min" class="shadow-md" />
+                <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.8));' class="cl-ant-p sg-omit-sm text-white-sm">
+                  {{ item.name }}
+                </p>
+              </div>
+            </div>
+          </template> -->
+        </section>
       </main>
       <template #overlay>
         <a-menu>
           <a-menu-item key="1">
-            <AntdIcon :name="'SwapOutlined'" :style="'font-size: 14px'" />
-            切换壁纸
+            <AntdIcon :name="'PlusOutlined'" :style="'font-size: 14px'" />
+            <span style="float: right;">添加图标</span>
           </a-menu-item>
           <a-menu-item key="2">
-            <AntdIcon :name="'PlusOutlined'" :style="'font-size: 14px'" />
-            添加图标或组件
+            <AntdIcon :name="'SwapOutlined'" :style="'font-size: 14px'" />
+            <span style="float: right;">切换壁纸</span>
           </a-menu-item>
-          <a-menu-item key="3">3rd menu item</a-menu-item>
+          <a-menu-item key="3">
+            <AntdIcon :name="'AppstoreOutlined'" :style="'font-size: 14px'" />
+            <span style="float: right;">整理图标</span>
+          </a-menu-item>
         </a-menu>
       </template>
     </a-dropdown>
@@ -30,7 +46,7 @@
 import { GridStack } from 'gridstack';
 import SearchEngine from '@/components/SearchEngine.vue';
 import { useGridsStore } from '@/store/grids';
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   components: {
@@ -39,11 +55,14 @@ export default defineComponent({
   setup() {
     const $message: { success: Function } = inject('$message')!;
     let grid: any;
+    let homeList = ref<any>([])
+    let homeList2 = ref<any>([])
 
     onMounted(() => {
       grid = GridStack.init({
         float: false,
-        cellHeight: '8vh',
+        cellHeight: '60px',
+        // cellHeight: '8vh',
         minRow: 1
       });
       grid.enableResize(false);
@@ -58,9 +77,13 @@ export default defineComponent({
     });
 
     function loadHomeJson() {
+      console.log('useGridsStore()', useGridsStore().getSelectedGrids.icon)
       useGridsStore().getSelectedGrids.icon.forEach(v => {
         addNewWidget(v.src, v.name);
+        homeList.value.push(v)
       });
+
+      // console.log('homeList', homeList.value)
     }
 
     function addNewWidget(src: string, name: string) {
@@ -72,11 +95,20 @@ export default defineComponent({
           </div>
         </div>
       `;
+      // const el = `
+      //   <div class="grid-stack-item">
+      //     <div class="grid-stack-item-content flex flex-direction justify-around align-center">
+      //       <img src="${src}" style="width: 4vw; height: 4vw; border-radius: 20px; min" class="shadow-md" />
+      //       <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.8));' class="cl-ant-p sg-omit-sm text-white-sm">${name}</p>
+      //     </div>
+      //   </div>
+      // `;
       grid.addWidget(el, { w: 1, h: 2 });
     }
 
     return {
-      addNewWidget
+      addNewWidget,
+      homeList
     };
   }
 });

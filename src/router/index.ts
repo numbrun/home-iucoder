@@ -34,19 +34,25 @@ export const constantRoutes: any = [
         path: 'coder',
         name: 'coder',
         component: () => import('@/views/coder/index.vue'),
-        meta: { title: '程序员', icon: 'CodeSandboxOutlined' },
+        meta: { title: '编程', icon: 'CodeSandboxOutlined' },
       },
       {
         path: 'designer',
         name: 'designer',
         component: () => import('@/views/designer/index.vue'),
-        meta: { title: '产品设计', icon: 'LikeOutlined' },
+        meta: { title: '设计', icon: 'LikeOutlined' },
       },
       {
         path: 'rest',
         name: 'rest',
         component: () => import('@/views/rest/index.vue'),
-        meta: { title: '摸鱼🐟', icon: 'CoffeeOutlined' },
+        meta: { title: '产品', icon: 'WalletOutlined' },
+      },
+      {
+        path: 'rest',
+        name: 'rest',
+        component: () => import('@/views/rest/index.vue'),
+        meta: { title: '摸鱼', icon: 'CoffeeOutlined' },
       }
     ]
   }

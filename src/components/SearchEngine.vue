@@ -47,7 +47,7 @@ export default defineComponent({
       this.visible = false
     },
     enterSubmit() {
-      location.href = useSearchEngineStore().getCurrentSearchEngine.frontLink + this.searchWord
+      window.open(useSearchEngineStore().getCurrentSearchEngine.frontLink + this.searchWord)
     }
   },
   setup() {

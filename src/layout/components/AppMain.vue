@@ -9,8 +9,6 @@
 import { computed  } from 'vue'
 
 const route = useRoute();
-// const route = useRoute();
-
 const key = computed(() => route.path);
 </script>
 

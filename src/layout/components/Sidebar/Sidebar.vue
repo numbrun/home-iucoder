@@ -2,24 +2,36 @@
   <!-- 左侧导航栏 -->
   <div id="sidebar" class="sd flex flex-direction justify-center align-center">
     <div class="sd-top"></div>
-    <div class="sd-mid flex flex-direction justify-around align-center">
+    <div class="sd-mid flex flex-direction  align-center">
       <Link :to="resolvePath(routes[0].path, item.path)" v-for="item in routes[0].children" :key="item.path">
       <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '80px' }">
-        <div class="sd-mid-div flex flex-direction justify-around align-center"
+
+        <div style="margin: 5px 0;" class="sd-mid-div flex flex-direction justify-around align-center"
           :class="{ active: selectedRouteName === item.name }" @click.stop="chooseBlock(item.name!)">
           <AntdIcon :name="item.meta?.icon" :style="atdIconSelected(item.name!)"></AntdIcon>
           <span class="sg-omit-sm" :class="{ active: selectedRouteName === item.name }">{{ item.meta?.title }}</span>
         </div>
+
         <template #overlay>
           <a-menu>
             <a-menu-item key="1">编辑</a-menu-item>
             <a-menu-item key="2" @click.stop="deleteRoute(item)">删除</a-menu-item>
           </a-menu>
         </template>
+
       </a-dropdown>
       </Link>
       <AddGroupBtn>
-        <AntdIcon :name="'PlusSquareOutlined'" :style="'font-size: 20px; color: #40a9ff'"></AntdIcon>
+        <AntdIcon :name="'PlusOutlined'" style="
+        font-size: 20px;
+        color: rgb(198, 211, 221);
+        height: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         ">
+        </AntdIcon>
       </AddGroupBtn>
     </div>
     <div class="sd-bottom"></div>
@@ -46,13 +58,13 @@ export default defineComponent({
   },
   components: {
     Link,
-    AddGroupBtn
+    AddGroupBtn,
   },
   methods: {
     atdIconSelected(name: string) {
-      if (this.selectedRouteName === name) {
-        return 'font-size: 20px; color: #40a9ff';
-      }
+      // if (this.selectedRouteName === name) {
+      //   return 'font-size: 20px; color: #40a9ff';
+      // }
       return 'font-size: 20px; color: #eeeeee';
     },
     deleteRoute(item: any) {
@@ -130,8 +142,8 @@ export default defineComponent({
       height: 50px;
 
       &.active {
-        background-color: #c6d3dd;
-        color: #40a9ff;
+        background-color: #ffffff26;
+        // color: #40a9ff;
       }
 
       span {
@@ -141,7 +153,8 @@ export default defineComponent({
         line-height: 18px;
 
         &.active {
-          color: #40a9ff;
+          // color: v-bind(fontColor);
+          // color: #e9e9e999;
         }
       }
     }

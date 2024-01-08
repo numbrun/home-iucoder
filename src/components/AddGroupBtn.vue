@@ -4,18 +4,13 @@
       <div class="group">
         <span>图标</span>
         <div class="group-icons flex flex-wrap">
-          <AntdIcon
-            class="s-group-icon"
-            v-for="item in groupIcons"
-            :name="item.name"z
+          <AntdIcon class="s-group-icon" v-for="item in groupIcons" :name="item.name"
             :style="'font-size: 22px; color: #40a9ff; margin-left: 6px; margin-top: 5px; padding: 4px; border-radius: 4px'"
-            :class="{selected : selectedIcon === item.name}"
-            @click="selectIcon(item.name)"
-          ></AntdIcon>
+            :class="{ selected: selectedIcon === item.name }" @click="selectIcon(item.name)"></AntdIcon>
         </div>
       </div>
       <a-input-group compact>
-        <a-input v-model:value="groupName" style="width: calc(100% - 80px)" placeholder="请输入组名"/>
+        <a-input v-model:value="groupName" style="width: calc(100% - 80px)" placeholder="请输入组名" />
         <a-button type="primary" @click="submitGroup">确定</a-button>
       </a-input-group>
     </template>
@@ -120,14 +115,16 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.group-icons{
+.group-icons {
   width: 224px;
   height: 66px;
   margin-bottom: 10px;
+
   .s-group-icon {
     &:hover {
       background-color: #1278cb32;
     }
+
     &.selected {
       background-color: #1278cb32;
     }
