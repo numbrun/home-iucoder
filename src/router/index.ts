@@ -1,19 +1,5 @@
-// import { createRouter, createWebHistory } from 'vue-router'
-
-// const router = createRouter({
-//   history: createWebHistory(import.meta.env.BASE_URL),
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       component: () => import('@/views/Index.vue')
-//     },
-//   ]
-// })
-
-// export default router
-
-import { createRouter, createWebHashHistory, Router } from 'vue-router'
+//createWebHashHistory
+import { createRouter, createWebHistory, Router } from 'vue-router'
 import Layout from '@/layout'
 // import { RouterTy } from '~/router'
 
@@ -43,8 +29,8 @@ export const constantRoutes: any = [
         meta: { title: '设计', icon: 'LikeOutlined' },
       },
       {
-        path: 'rest',
-        name: 'rest',
+        path: 'product',
+        name: 'product',
         component: () => import('@/views/rest/index.vue'),
         meta: { title: '产品', icon: 'WalletOutlined' },
       },
@@ -59,7 +45,7 @@ export const constantRoutes: any = [
 ]
 
 const router: Router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   scrollBehavior(to, from, savedPosition) {
     // 始终滚动到顶部
     return { top: 0 }

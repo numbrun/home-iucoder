@@ -18,14 +18,14 @@
       </template>
       <SvgIcon :name="currentSearchEngine.slinkLogo" style="font-size: 34px; margin-left: 20px;"></SvgIcon>
     </a-popover>
-    <input type="text" class="search" :value="searchWord"
+
+    <input type="text" class="search-ipt" :value="searchWord"
       @input="searchWord = ($event.target as HTMLInputElement).value" style="font-size: 20px"
       @keyup.enter="enterSubmit" />
-    <AntdIcon
-      name="SearchOutlined"
-      style="font-size: 30px; margin-right: 20px;"
-      @click.stop="enterSubmit()"
-    ></AntdIcon>
+    <div>
+      <AntdIcon class="search-logo" name="SearchOutlined" style="font-size: 26px; margin-right: 20px;"
+        @click.stop="enterSubmit()"></AntdIcon>
+    </div>
   </div>
 </template>
 
@@ -64,28 +64,33 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .top-search {
-  width: 706px;
-  height: 54px;
-  border-radius: 100px;
-  background-color: white;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 3vh auto 20px;
+  height: 46px;
+  border-radius: 100px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
+  /* 调整模糊程度 */
+  backdrop-filter: blur(5px);
 
-  .search {
-    width: 580px;
-    height: 50px;
+  .search-ipt {
+    width: 470px;
+    height: 46px;
+    background-color: transparent;
   }
 
-  .search-logo {
-    cursor: pointer;
-    z-index: 20;
-    margin-right: 20px;
-    font-size: 30px;
+  // .search-logo {
+  //   cursor: pointer;
+  //   z-index: 20;
+  //   margin-right: 20px;
+  //   font-size: 16px;
 
-    &:hover {
-      color: #1890ff;
-    }
-  }
+  //   &:hover {
+  //     color: #1890ff;
+  //   }
+  // }
 }
 
 .poppop {

@@ -15,8 +15,8 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.3",
+    "chinese-lunar-calendar": "^1.0.1",
     "gridstack": "^5.1.1",
-    "normalize.css": "^8.0.1",
     "path-browserify": "^1.0.1",
     "pinia": "^2.1.7",
     "rgbaster": "^2.1.1",

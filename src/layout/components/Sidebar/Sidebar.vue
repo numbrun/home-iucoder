@@ -143,7 +143,6 @@ export default defineComponent({
 
       &.active {
         background-color: #ffffff26;
-        // color: #40a9ff;
       }
 
       span {

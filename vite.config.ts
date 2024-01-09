@@ -15,7 +15,8 @@ export default defineConfig({
     vueJsx(),
     // vueSetupExtend(), // vue script setup syntax support the name attribute 再script标签中可以设置当前setup的name,
     createSvgIconsPlugin({
-      iconDirs: [path.resolve(process.cwd(), 'src/icons/common')], // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons/common')], // 指定需要缓存的图标文件夹
+      // iconDirs: [path.resolve(process.cwd(), 'src/icons/common')], // 指定需要缓存的图标文件夹
       symbolId: 'icon-[dir]-[name]' // 指定symbolId格式
     }),
     AutoImport({
@@ -42,7 +43,7 @@ export default defineConfig({
     preprocessorOptions: {
       //define global scss variable 全局css变量可使用
       scss: {
-        additionalData: `@import "@/styles/variables.scss";`
+        additionalData: `@import "@/assets/css/variables.scss";`
       }
     }
   },

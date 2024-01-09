@@ -101,6 +101,12 @@
       "type": "icon",
       "name": "斗鱼",
       "src": "https://files.codelife.cc/website/douyu.svg"
+    },
+    {
+      "url": "http://www.douyu.com/",
+      "type": "icon",
+      "name": "添加图标",
+      "src": "https://files.codelife.cc/icons/add.svg"
     }
   ]
 }
