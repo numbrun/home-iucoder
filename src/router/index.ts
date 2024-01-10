@@ -1,5 +1,5 @@
-//createWebHashHistory
-import { createRouter, createWebHistory, Router } from 'vue-router'
+//createWebHashHistory｜createWebHistory
+import { createRouter, createWebHashHistory, Router } from 'vue-router'
 import Layout from '@/layout'
 // import { RouterTy } from '~/router'
 
@@ -45,7 +45,7 @@ export const constantRoutes: any = [
 ]
 
 const router: Router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   scrollBehavior(to, from, savedPosition) {
     // 始终滚动到顶部
     return { top: 0 }

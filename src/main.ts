@@ -1,10 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
-
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-
 
 import '@/assets/css/reset.css';
 import '@/assets/css/index.scss'; // global css
@@ -20,7 +18,6 @@ import './initAsyncRoutes';
 import 'gridstack/dist/gridstack.min.css';
 import 'gridstack/dist/h5/gridstack-dd-native';
 
-
 import '@/assets/css/reset.css';
 
 const app = createApp(App);
@@ -32,7 +29,7 @@ app.component('AntdIcon', AntdIcon); // THEN to get HTML5 drag&drop
 
 //用于从图像（在浏览器中）中提取主颜色。
 // import analyze from 'rgbaster'
-// const result = await analyze('https://kodo.mboke.top/ytab/iyk7.mp4', { scale: 0.6 })
-// console.log(result)
+// const result = await analyze('https://files.codelife.cc/wallpaper/wallspic/20240104c5fib0.jpeg?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_92/format,webp', { scale: 0.6 })
+// console.log('result', result)
 
 app.use(router).mount('#app');
