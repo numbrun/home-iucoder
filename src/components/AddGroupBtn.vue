@@ -1,5 +1,5 @@
 <template>
-  <a-popover title="添加分组" trigger="click" placement="right" v-model:visible="visible">
+  <a-popover title="添加分组" trigger="click" placement="right" v-model:open="visible">
     <template #content>
       <div class="group">
         <span>图标</span>

@@ -12,7 +12,10 @@ export default abstract class DataBeforeGuard {
   }
 
   static initSearchEngine() {
+
+    //搜索引擎列表
     localStorage.setItem('SEARCH-ENGINE', JSON.stringify(searchEngine.searchList));
+    
     if (!localStorage.getItem('CURRENTSEARCH-ENGINE')) {
       localStorage.setItem('CURRENTSEARCH-ENGINE', JSON.stringify(searchEngine.searchList[0]));
     }
