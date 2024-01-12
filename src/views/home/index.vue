@@ -1,7 +1,7 @@
 <template>
   <div class="ya-matter flex flex-direction align-center">
     <header class="flex flex-direction justify-center align-center">
-      <HeadDate @click="handleClick"/>
+      <HeadDate @click="handleClick" />
       <SearchEngine class="se" />
     </header>
     <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
@@ -44,10 +44,11 @@ const gridItemRef = ref<HTMLElement | null>(null);
 onMounted(() => {
   grid = GridStack.init({
     float: false,
-    cellHeight: '50px',//一个单元格高度
+    // cellHeight: '120px',//一个单元格高度
     // cellHeight: '8vh',
     minRow: 1,
     column: 12,//一行放几个
+    margin: 10,
   });
   grid.enableResize(false);
 
@@ -56,6 +57,12 @@ onMounted(() => {
     const node = element.gridstackNode;
     // $message.success(`成功移动至${node.y / 2 + 1}行${node.x + 1}列`);
   });
+
+  // grid.on('click', (event: any, element: any) => {
+  //   const node = element.gridstackNode;
+  //   $message.success(`成功移动至${node.y / 2 + 1}行${node.x + 1}列`);
+  // });
+
 
   loadHomeJson();
 
@@ -77,16 +84,50 @@ const removed = () => {
 }
 
 function loadHomeJson() {
-  useGridsStore().getSelectedGrids.icon.forEach(v => {
-    addNewWidget(v.src, v.name);
+  useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
+    if (v.type == 'icon') {
+      addNewWidget(v.src, v.name);
+    } else if (v.type == 'component') {
+      addComponent(v);
+    }
     // homeList.value.push(v)
   });
 
 }
+function addComponent(row: Object | any) {
+  let sizew = row.size.split('x')[0]
+  let sizeh = row.size.split('x')[1]
+  const el2 = `
+      <div style='background:blue;height:100%' >
+       ${row.sizeText}
+      </div>
+  `;
 
+
+
+  // 添加一个网格项
+  const widget = grid.addWidget({
+    w: sizew,
+    h: sizeh,
+    content: el2,
+  });
+
+  // // 监听点击事件（使用事件委托）
+  // grid.el.addEventListener('click', (event) => {
+  //   // 检查点击的元素是否为目标元素（div）
+  //   if (event.target === div) {
+  //     // 获取当前点击的行数据
+  //     const clickedRow = JSON.parse(event.target.dataset.row);
+
+  //     // 处理点击事件的逻辑
+  //     console.log('当前点击的行数据:', clickedRow);
+  //   }
+  // });
+
+}
 function addNewWidget(src: string, name: string) {
   const el = `
-    <div class="grid-stack-item" gs-w="1">
+    <div class="grid-stack-item" style='height:100%' gs-w="1">
       <div class="grid-stack-item-content flex flex-direction justify-around align-center">
         <img src="${src}" style="width: 3vw; height: 3vw; border-radius: 20px; min" class="shadow-md" />
         <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.8));margin-top: 2px;' class="cl-ant-p sg-omit-sm text-white-sm">${name}</p>
@@ -94,15 +135,27 @@ function addNewWidget(src: string, name: string) {
     </div>
   `;
   grid.addWidget({
-    w: 1, h: 2,
+    w: 1, h: 1,
     content: el,
   });
 }
 
 const handleClick = (event: Event) => {
-  console.log('grid-stack-item-content 被点击了!', event.target);
+  // console.log('grid-stack-item-content 被点击了!', event.target.dataset.row);
   // 在这里执行你的点击事件处理逻辑
 };
+
+// 删除一个网格项
+// const item = grid.getItems()[0];
+// grid.removeWidget(item);
+
+// // 移动一个网格项
+// const itemToMove = grid.getItems()[0];
+// grid.moveWidget(itemToMove, 2, 2);
+
+// // 调整网格项的大小
+// const itemToResize = grid.getItems()[0];
+// grid.resizeWidget(itemToResize, 4, 2);
 
 </script>
 

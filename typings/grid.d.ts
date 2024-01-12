@@ -13,6 +13,6 @@ export type GridComponentTy = {
 }
 
 export interface GrideModuleTy {
-  icon: Array<GridIconTy>,
+  navIconConfig: Array<GridIconTy>,
   component: Array<GridComponentTy>
 }

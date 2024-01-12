@@ -43,7 +43,7 @@ export default defineComponent({
     });
 
     function loadHomeJson() {
-      useGridsStore().getSelectedGrids.icon.forEach(v => {
+      useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
         addNewWidget(v.src, v.name)
       })
     }

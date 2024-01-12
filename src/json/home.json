@@ -1,5 +1,13 @@
 {
-  "icon": [
+  "navIconConfig": [
+    {
+      "name": "天气",
+      "component": "weather",
+      "type": "component",
+      "size": "2x1",
+      "sizeText": "中",
+      "id": "testtianqi"
+    },
     {
       "url": "https://ai.taobao.com?pid=mm_54561194_2536750027_111828300388&union_lens=lensId%3APUB%401644727921%4021057ef3_09a7_17ef16c69e2_05aa%4001",
       "type": "icon",
@@ -13,6 +21,14 @@
       "src": "https://files.codelife.cc/website/jd.svg"
     },
     {
+      "name": "天气2",
+      "component": "weather",
+      "type": "component",
+      "size": "2x2",
+      "sizeText": "大",
+      "id": "testtianqi"
+    },
+    {
       "url": "https://shimo.im/desktop",
       "type": "icon",
       "name": "石墨",
@@ -23,6 +39,14 @@
       "url": "https://www.tmall.com/",
       "name": "天猫精选",
       "src": "https://files.codelife.cc/website/tmall.svg"
+    },
+    {
+      "name": "天气2",
+      "component": "weather",
+      "type": "component",
+      "size": "4x2",
+      "sizeText": "特大",
+      "id": "testtianqi"
     },
     {
       "url": "http://you.163.com/?from=itab.link",
