@@ -13,6 +13,7 @@ import { message } from 'ant-design-vue';
 import 'virtual:svg-icons-register'; // 引入雪碧图注册脚本，到这里雪碧图已经生成
 import svgIcon from '@/components/SvgIcon.vue';
 import AntdIcon from '@/components/AntdIcon.vue';//这里会极大变大打包文件
+import CompModal from '@/components/CompModal.vue';//这里会极大变大打包文件
 import router from './router';
 import './initAsyncRoutes';
 import 'gridstack/dist/gridstack.min.css';
@@ -25,6 +26,7 @@ app.use(Antd);
 app.config.globalProperties.$message = message;
 app.component('SvgIcon', svgIcon);
 app.component('AntdIcon', AntdIcon); // THEN to get HTML5 drag&drop
+app.component('CompModal', CompModal); //全局弹窗组件
 
 //用于从图像（在浏览器中）中提取主颜色。
 // import analyze from 'rgbaster'

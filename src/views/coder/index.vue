@@ -1,6 +1,6 @@
 <template>
   <div>
-    coder
+    <CompModal />
   </div>
 </template>
 
@@ -14,6 +14,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
