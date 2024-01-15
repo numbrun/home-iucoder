@@ -17,8 +17,7 @@ import CompModal from '@/components/CompModal.vue';//这里会极大变大打包
 import router from './router';
 import './initAsyncRoutes';
 import 'gridstack/dist/gridstack.min.css';
-import 'gridstack/dist/h5/gridstack-dd-native';
-
+import 'gridstack/dist/gridstack-extra.css';
 
 const app = createApp(App);
 app.use(createPinia());

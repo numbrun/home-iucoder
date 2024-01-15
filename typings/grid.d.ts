@@ -1,8 +1,12 @@
-export type GridIconTy = {
+export type navIconConfig = {
   url: string,
-  type: 'icon',
+  type: 'icon' | 'component' | 'add',
   name: string,
-  src: string
+  src: string,
+  size: string
+  sizeText?: string
+  id?: string
+  component?: string
 }
 
 export type GridComponentTy = {
@@ -13,6 +17,6 @@ export type GridComponentTy = {
 }
 
 export interface GrideModuleTy {
-  navIconConfig: Array<GridIconTy>,
+  navIconConfig: Array<navIconConfig>,
   component: Array<GridComponentTy>
 }

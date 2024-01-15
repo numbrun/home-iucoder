@@ -3,6 +3,9 @@
     <header class="flex flex-direction justify-center align-center">
       <HeadDate @click="handleClick" />
       <SearchEngine class="se" />
+
+      <div v-html="html"></div>
+
     </header>
     <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
       <main>
@@ -11,7 +14,7 @@
       </main>
       <template #overlay>
         <a-menu>
-          <a-menu-item key="1" @click.stop="addNewWidget('https://files.codelife.cc/website/12306.svg', '12306')">
+          <a-menu-item key="1" @click.stop="addNewWidget()">
             <AntdIcon :name="'PlusOutlined'" :style="'font-size: 14px'" />
             <span style="float: right;">添加图标</span>
           </a-menu-item>
@@ -33,12 +36,14 @@
 import { GridStack } from 'gridstack';
 import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
+import HeadCalendar from './HeadCalendar.vue';
 import { useGridsStore } from '@/store/grids';
-import { defineProps, defineEmits, ref, onMounted } from "vue";
+import { defineProps, defineEmits, ref, onMounted, render } from "vue";
+import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
+
 
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
-let homeList = ref<any>([])
 const gridItemRef = ref<HTMLElement | null>(null);
 
 onMounted(() => {
@@ -47,32 +52,30 @@ onMounted(() => {
     // cellHeight: '120px',//一个单元格高度
     // cellHeight: '8vh',
     minRow: 1,
-    column: 12,//一行放几个
-    margin: 10,
+    // column: 2,//一行放几个
+    // cellHeight: "70px",
+    // cellWidth: "70px",
+    margin: 0,
   });
   grid.enableResize(false);
+  grid.column(12, 'moveScale');
 
   // 监听到dragstop
   grid.on('dragstop', (event: any, element: any) => {
     const node = element.gridstackNode;
     // $message.success(`成功移动至${node.y / 2 + 1}行${node.x + 1}列`);
   });
-
-  // grid.on('click', (event: any, element: any) => {
-  //   const node = element.gridstackNode;
-  //   $message.success(`成功移动至${node.y / 2 + 1}行${node.x + 1}列`);
-  // });
-
-
   loadHomeJson();
-
   const gridStackItemContent: any = document.querySelectorAll('.grid-stack-item-content');
   if (gridStackItemContent && gridStackItemContent.length > 0) {
     gridStackItemContent.forEach((element: HTMLElement) => {
-      element.addEventListener('click', handleClick);
+      // element.addEventListener('click', handleClick);
     });
   }
+  window.handleClick = handleClick
 });
+
+
 
 //当项目从网格中删除时调用
 const removed = () => {
@@ -83,67 +86,62 @@ const removed = () => {
   });
 }
 
+const handleClick = (option: navIconConfig) => {
+  if (option.type === "icon") {
+    window.open(option.url, '_blank')
+  }
+  if (option.type === "component") {
+  }
+  if (option.type === "add") {
+
+  }
+  console.log(option)
+}
+
 function loadHomeJson() {
   useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
-    if (v.type == 'icon') {
-      addNewWidget(v.src, v.name);
+    if (v.type == 'icon' || v.type == 'add') {
+      addNewWidget(v);
     } else if (v.type == 'component') {
       addComponent(v);
     }
-    // homeList.value.push(v)
   });
-
 }
-function addComponent(row: Object | any) {
+function addComponent(row: navIconConfig ) {
   let sizew = row.size.split('x')[0]
   let sizeh = row.size.split('x')[1]
   const el2 = `
-      <div style='background:blue;height:100%' >
-       ${row.sizeText}
+      <div  style='background:transport;height:100%' >
+      <${row.component}/>
       </div>
   `;
-
-
-
   // 添加一个网格项
   const widget = grid.addWidget({
     w: sizew,
     h: sizeh,
     content: el2,
+    data1: row
   });
-
-  // // 监听点击事件（使用事件委托）
-  // grid.el.addEventListener('click', (event) => {
-  //   // 检查点击的元素是否为目标元素（div）
-  //   if (event.target === div) {
-  //     // 获取当前点击的行数据
-  //     const clickedRow = JSON.parse(event.target.dataset.row);
-
-  //     // 处理点击事件的逻辑
-  //     console.log('当前点击的行数据:', clickedRow);
-  //   }
-  // });
-
 }
-function addNewWidget(src: string, name: string) {
+function addNewWidget(option: any = {}) {
+  //传递对象需要json.stringify()把javascript对象转换成json字符串;事件名后边需要跟单引号
+  //onclick='deleteFun($f"$fISON.stringify(row)}"})
   const el = `
-    <div class="grid-stack-item" style='height:100%' gs-w="1">
-      <div class="grid-stack-item-content flex flex-direction justify-around align-center">
-        <img src="${src}" style="width: 3vw; height: 3vw; border-radius: 20px; min" class="shadow-md" />
-        <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.8));margin-top: 2px;' class="cl-ant-p sg-omit-sm text-white-sm">${name}</p>
-      </div>
-    </div>
+        <div 
+            onClick = 'handleClick(${JSON.stringify(option)})'
+            style="height:100%;"
+            class="flex flex-direction justify-center align-center">
+            <img src="${option.src}" style="width: 3.5vw; height: 3.5vw; border-radius: 20px;" class="shadow-md" />
+            <p style=' filter: drop-shadow(0px 2px 7px rgba(0,0,0,.1));margin-top: 5px;text-shadow: 0 0 2px #0000004d;'
+              class="cl-ant-p sg-omit-sm text-white-sm">${option.name}</p>
+        </div>
   `;
+
   grid.addWidget({
     w: 1, h: 1,
     content: el,
   });
 }
-
-const handleClick = (event: Event) => {
-  // console.log('grid-stack-item-content 被点击了!', event.target.dataset.row);
-  // 在这里执行你的点击事件处理逻辑
-};
 
 // 删除一个网格项
 // const item = grid.getItems()[0];
@@ -156,6 +154,41 @@ const handleClick = (event: Event) => {
 // // 调整网格项的大小
 // const itemToResize = grid.getItems()[0];
 // grid.resizeWidget(itemToResize, 4, 2);
+
+
+const GridContentComponent = {
+  props: {
+    itemId: {
+      type: [String, Number],
+      required: true,
+    },
+  },
+  emits: ['remove'],
+  setup(props, { emit }) {
+    const { itemId } = toRefs(props)
+
+    onBeforeUnmount(() => {
+      console.log(`In vue onBeforeUnmount for item ${itemId.value}`)
+    });
+
+    function handleRemove() {
+      emit('remove', itemId.value)
+    }
+
+    return {
+      itemId,
+      handleRemove,
+    }
+  },
+  template: `
+          <div class="my-custom-grid-item-content">
+            <button @click=handleRemove>X</button>
+            <p>
+              Vue Grid Item Content {{ itemId }}
+            </p>
+          </div>
+        `
+}
 
 </script>
 

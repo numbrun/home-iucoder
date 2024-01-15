@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { GrideModuleTy, GridIconTy, GridComponentTy } from '~/grid'
+import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 
 
 export const useGridsStore = defineStore('grids', {
@@ -19,7 +19,7 @@ export const useGridsStore = defineStore('grids', {
       })
     },
 
-    SELECTED_GRIDS_MODIFY(name: string, actionObj: { action: 'DEC' | 'INC', grid: GridComponentTy | GridIconTy}) {
+    SELECTED_GRIDS_MODIFY(name: string, actionObj: { action: 'DEC' | 'INC', grid: GridComponentTy | navIconConfig}) {
       this.$patch((state) => {
         console.log('state',state)
         if(actionObj.action === 'DEC') {

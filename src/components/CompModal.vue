@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import { ref, computed, CSSProperties, watch, watchEffect } from 'vue';
 import { useDraggable } from '@vueuse/core';
-const open = ref<boolean>(true);
+const open = ref<boolean>(false);
 const modalTitleRef = ref<HTMLElement | null>(null);
 const showModal = () => {
     open.value = true;
@@ -114,12 +114,16 @@ const transformStyle = computed<CSSProperties>(() => {
         padding: 0;
         min-height: 300px;
         overflow-x: hidden;
-        // background-image: url($wallThumb);
+
+        // background-repeat: no-repeat;
         // background-size: cover;
         // background-position: center;
-        // background-repeat: no-repeat;
-        backdrop-filter: blur(20px);
+        // background-image: url(https://images.unsplash.com/photo-1642428272104-0eb971cfe559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwNTMwMDg1Mg&ixlib=rb-4.0.3&q=80&w=1080);
+        // backdrop-filter: blur(10px) brightness(100%) contrast(100%) saturate(100%) grayscale(0%) sepia(0%);
+
         background-color: rgba(255,255,255, .5);
+        backdrop-filter: blur(20px);
+
     }
 
     .modal-header {

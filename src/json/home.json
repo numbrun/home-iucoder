@@ -2,7 +2,7 @@
   "navIconConfig": [
     {
       "name": "天气",
-      "component": "weather",
+      "component": "HeadCalendar",
       "type": "component",
       "size": "2x1",
       "sizeText": "中",
@@ -127,8 +127,8 @@
       "src": "https://files.codelife.cc/website/douyu.svg"
     },
     {
-      "url": "http://www.douyu.com/",
-      "type": "icon",
+      "url": "",
+      "type": "add",
       "name": "添加图标",
       "src": "https://files.codelife.cc/icons/add.svg"
     }
