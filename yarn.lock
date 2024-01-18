@@ -2049,10 +2049,10 @@ graphemer@^1.4.0:
   resolved "https://registry.npmmirror.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-gridstack@9.5.1:
-  version "9.5.1"
-  resolved "https://registry.npmmirror.com/gridstack/-/gridstack-9.5.1.tgz#10858848d36160b2d834f8cf0c304944ba2b6505"
-  integrity sha512-ZzBXY8J2dTPwVOP14d6vHhrXZMWh4qCgb+FJ1COSOrI02OtiPJtDgEQbz1rDlVR/tFU5WQP67w1RYz0eF0FkuA==
+gridstack@^10.0.1:
+  version "10.0.1"
+  resolved "http://npm.nxin.com/gridstack/-/gridstack-10.0.1.tgz#5a0154ac4f4f18f7dfc7729c746616dd5fa69cbe"
+  integrity sha512-0NeRtQ6LLENN+xdJnjneOhQw60I5NHJKgW1KWz/hau046KGlJUza0V2FcxvylzKNc8EXZbWc08tsw9T4ohs+Wg==
 
 has-ansi@^2.0.0:
   version "2.0.0"

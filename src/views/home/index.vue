@@ -22,7 +22,7 @@
             <AntdIcon :name="'SwapOutlined'" :style="'font-size: 14px'" />
             <span style="float: right;">切换壁纸</span>
           </a-menu-item>
-          <a-menu-item key="3">
+          <a-menu-item key="3" @click.stop="compact()">
             <AntdIcon :name="'AppstoreOutlined'" :style="'font-size: 14px'" />
             <span style="float: right;">整理图标</span>
           </a-menu-item>
@@ -38,9 +38,8 @@ import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
 import HeadCalendar from './HeadCalendar.vue';
 import { useGridsStore } from '@/store/grids';
-import { defineProps, defineEmits, ref, onMounted, render } from "vue";
+import { defineProps, defineEmits, ref, onMounted, render, compile } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
-
 
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
@@ -52,13 +51,20 @@ onMounted(() => {
     // cellHeight: '120px',//一个单元格高度
     // cellHeight: '8vh',
     minRow: 1,
-    // column: 2,//一行放几个
     // cellHeight: "70px",
     // cellWidth: "70px",
     margin: 0,
-  });
+    // cellHeight: 80,
+    animate: false, // show immediate (animate: true is nice for user dragging though)
+    columnOpts: {
+      breakpointForWindow: true,  // test window vs grid size
+      breakpoints: [{ w: 700, c: 4 }, { w: 850, c: 6 }, { w: 1000, c: 8 }, { w: 1200, c: 12 }]
+    },
+    // resizable: { handles: 'ne' },
+  })
   grid.enableResize(false);
   grid.column(12, 'moveScale');
+
 
   // 监听到dragstop
   grid.on('dragstop', (event: any, element: any) => {
@@ -66,16 +72,8 @@ onMounted(() => {
     // $message.success(`成功移动至${node.y / 2 + 1}行${node.x + 1}列`);
   });
   loadHomeJson();
-  const gridStackItemContent: any = document.querySelectorAll('.grid-stack-item-content');
-  if (gridStackItemContent && gridStackItemContent.length > 0) {
-    gridStackItemContent.forEach((element: HTMLElement) => {
-      // element.addEventListener('click', handleClick);
-    });
-  }
   window.handleClick = handleClick
 });
-
-
 
 //当项目从网格中删除时调用
 const removed = () => {
@@ -97,6 +95,9 @@ const handleClick = (option: navIconConfig) => {
   }
   console.log(option)
 }
+const compact = () => {
+  grid.compact();
+}
 
 function loadHomeJson() {
   useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
@@ -107,12 +108,14 @@ function loadHomeJson() {
     }
   });
 }
-function addComponent(row: navIconConfig ) {
+function addComponent(row: navIconConfig) {
   let sizew = row.size.split('x')[0]
   let sizeh = row.size.split('x')[1]
   const el2 = `
-      <div  style='background:transport;height:100%' >
+      <div  style='background:blue;height:100%' >
+        12
       <${row.component}/>
+      34
       </div>
   `;
   // 添加一个网格项
@@ -156,40 +159,6 @@ function addNewWidget(option: any = {}) {
 // grid.resizeWidget(itemToResize, 4, 2);
 
 
-const GridContentComponent = {
-  props: {
-    itemId: {
-      type: [String, Number],
-      required: true,
-    },
-  },
-  emits: ['remove'],
-  setup(props, { emit }) {
-    const { itemId } = toRefs(props)
-
-    onBeforeUnmount(() => {
-      console.log(`In vue onBeforeUnmount for item ${itemId.value}`)
-    });
-
-    function handleRemove() {
-      emit('remove', itemId.value)
-    }
-
-    return {
-      itemId,
-      handleRemove,
-    }
-  },
-  template: `
-          <div class="my-custom-grid-item-content">
-            <button @click=handleRemove>X</button>
-            <p>
-              Vue Grid Item Content {{ itemId }}
-            </p>
-          </div>
-        `
-}
-
 </script>
 
 <style scoped lang="scss">
@@ -203,7 +172,6 @@ main {
   width: 90%;
   height: 70vh;
 
-  // background-color: rgba(255, 228, 196, 0.294);
   section {
     width: 100%;
     max-height: 100%;
