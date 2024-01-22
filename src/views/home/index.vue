@@ -3,9 +3,6 @@
     <header class="flex flex-direction justify-center align-center">
       <HeadDate @click="handleClick" />
       <SearchEngine class="se" />
-
-      <div v-html="html"></div>
-
     </header>
     <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
       <main>
@@ -38,16 +35,16 @@ import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
 import HeadCalendar from './HeadCalendar.vue';
 import { useGridsStore } from '@/store/grids';
-import { defineProps, defineEmits, ref, onMounted, render, compile } from "vue";
+import { defineProps, defineEmits, ref, onMounted, render, compile, createApp } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
-const gridItemRef = ref<HTMLElement | null>(null);
-
+ 
 onMounted(() => {
   grid = GridStack.init({
     float: false,
+    disableResize: true,
     // cellHeight: '120px',//一个单元格高度
     // cellHeight: '8vh',
     minRow: 1,
@@ -79,7 +76,6 @@ onMounted(() => {
 const removed = () => {
   grid.on('removed', function (event: Event, items: any[]) {
     items.forEach(function (item) {
-
     });
   });
 }
@@ -95,10 +91,10 @@ const handleClick = (option: navIconConfig) => {
   }
   console.log(option)
 }
+//整理图标
 const compact = () => {
   grid.compact();
 }
-
 function loadHomeJson() {
   useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
     if (v.type == 'icon' || v.type == 'add') {
@@ -114,16 +110,16 @@ function addComponent(row: navIconConfig) {
   const el2 = `
       <div  style='background:blue;height:100%' >
         12
-      <${row.component}/>
-      34
+      <HeadCalendar/>
+      2
       </div>
   `;
   // 添加一个网格项
   const widget = grid.addWidget({
     w: sizew,
     h: sizeh,
+    // content: HeadDate,
     content: el2,
-    data1: row
   });
 }
 function addNewWidget(option: any = {}) {
@@ -132,10 +128,10 @@ function addNewWidget(option: any = {}) {
   const el = `
         <div 
             onClick = 'handleClick(${JSON.stringify(option)})'
-            style="height:100%;"
+            style="height:100%;cursor: pointer;"
             class="flex flex-direction justify-center align-center">
             <img src="${option.src}" style="width: 3.5vw; height: 3.5vw; border-radius: 20px;" class="shadow-md" />
-            <p style=' filter: drop-shadow(0px 2px 7px rgba(0,0,0,.1));margin-top: 5px;text-shadow: 0 0 2px #0000004d;'
+            <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.1));margin-top: 5px;text-shadow: 0 0 2px #0000004d;'
               class="cl-ant-p sg-omit-sm text-white-sm">${option.name}</p>
         </div>
   `;

@@ -14,23 +14,23 @@
         </div>
     </div>
 </template>
-<script setup>
+<script lang="ts"  setup>
 import { onMounted, ref } from "vue";
 import { getLunar } from "chinese-lunar-calendar";
 
-let curYear = ref(""); // 当前年份
-let curMonth = ref(""); // 当前月份
-let curDay = ref(""); // 当前日期
-let curWeek = ref(""); // 当前周几
-let lunarDay = ref(""); // 农历日期
-let dayOfYear = ref(""); // 当前日期是一年中的第几天
-let weekOfYear = ref(""); // 当前日期是一年的第几周
+let curYear = ref(); // 当前年份
+let curMonth = ref(); // 当前月份
+let curDay = ref(); // 当前日期
+let curWeek = ref(); // 当前周几
+let lunarDay = ref(); // 农历日期
+let dayOfYear = ref(); // 当前日期是一年中的第几天
+let weekOfYear = ref(); // 当前日期是一年的第几周
 let curDate = ref({
-    hours: '',
-    minutes: '',
-    seconds: '',
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
 }); // 当前时分秒
-let clockTimer = null
+let clockTimer: any = null
 
 onMounted(() => {
     // 初始化日历
@@ -73,7 +73,7 @@ const init = () => {
 }
 
 //补 0
-const fixNum = (number, digits = 2) => {
+const fixNum = (number: Number, digits = 2) => {
     if (Number(number) < 10) {
         return "0" + String(number);
     }

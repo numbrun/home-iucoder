@@ -11,7 +11,7 @@
         </div>
     </div>
 </template>
-<script setup>
+<script  lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { getLunar } from "chinese-lunar-calendar";
 

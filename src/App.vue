@@ -22,21 +22,18 @@ export default defineComponent({
   mounted() {
     // 目前先这里尝试把第二张静态壁纸设置为当前壁纸
     this.setCurrentWallpaper();
-    this.$nextTick(() => {
-      this.transBackground();
-    });
+    // this.$nextTick(() => {
+    this.transBackground();
+    // });
   },
   methods: {
     transBackground(): void {
       if (useWallpaperStore().getCurrentWallpaper.attribute === 'picture') {
-        console.log(this.$pinia.state.value.wallpaper);
-        // 设置的背景是图片的话
+        // 设置的背景是图片 设置背景
         const domApp = document.querySelector('#app') as HTMLElement;
         domApp.style.background = `url(${useWallpaperStore().getCurrentWallpaper.url}) no-repeat`;
         domApp.style.backgroundSize = 'cover';
         domApp.style.backgroundAttachment = 'fixed';
-      } else {
-        // 设置的背景是视频的话
       }
     }
   },
@@ -49,7 +46,7 @@ export default defineComponent({
   setup() {
     const wallpaperStore = useWallpaperStore();
     const setCurrentWallpaper = () => {
-      wallpaperStore.SET_CURRENTWALLPAPER(wallpaperStore.getAllPictureWallpaper[1]);
+      wallpaperStore.SET_CURRENTWALLPAPER(wallpaperStore.getAllPictureWallpaper[0]);
     };
 
     return {

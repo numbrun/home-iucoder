@@ -15,7 +15,6 @@ export const useWallpaperStore = defineStore('wallpaper', {
   },
   actions: {
     SET_CURRENTWALLPAPER(swallpaperObj: any): void {
-      // SET_CURRENTWALLPAPER(swallpaperObj: SwallPaperTy): void {
       this.$patch((state) => {
         state.currentWallpaper = swallpaperObj
         localStorage.setItem('CURRENTWALLPAPER', JSON.stringify(swallpaperObj))

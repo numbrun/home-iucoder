@@ -7,6 +7,7 @@ import home from '@/json/home.json';
 // 抽象类是不允许被实例化
 export default abstract class DataBeforeGuard {
   static initWp() {
+    console.log('wallpaper',wallpaper)
     localStorage.setItem('WALLPAPER-PICTURE', JSON.stringify(wallpaper.img));
     localStorage.setItem('WALLPAPER-VIDEO', JSON.stringify(wallpaper.video));
   }
