@@ -64,17 +64,15 @@ const onSelect = (value: string) => {
   console.log('onSelect', value);
 };
 
-
+//点击搜索引擎
 const chooseSearch = (item: SearchEngineTy) => {
   useSearchEngineStore().SET_CURRENTSEARCH_ENGINE(item)
   visible.value = false
 }
 const enterSubmit = () => {
   window.open(useSearchEngineStore().getCurrentSearchEngine.frontLink + searchWord.value)
-
 }
 const allSearchEngines = useSearchEngineStore().getAllSearchEngines
-console.log('allSearchEngines',allSearchEngines)
 const currentSearchEngine = computed(() => useSearchEngineStore().getCurrentSearchEngine)
 </script>
 

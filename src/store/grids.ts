@@ -14,14 +14,12 @@ export const useGridsStore = defineStore('grids', {
   actions: {
     SYNC_SELECTED_GRIDS(name: string) {
       this.$patch((state) => {
-        console.log('state',state)
         state.selectedGrids = JSON.parse(localStorage.getItem(name.toUpperCase())!)
       })
     },
 
     SELECTED_GRIDS_MODIFY(name: string, actionObj: { action: 'DEC' | 'INC', grid: GridComponentTy | navIconConfig}) {
       this.$patch((state) => {
-        console.log('state',state)
         if(actionObj.action === 'DEC') {
           if(actionObj.grid.type === 'icon') {
             state.selectedGrids.icon.push(actionObj.grid)
