@@ -130,7 +130,7 @@ export default defineComponent({
 .sd {
   width: 100%;
   height: 100%;
-  background-color: v-bind(sidebarThemeColor);
+  background-color: v-bind(sidebarThemeColor);//计算出背景色
   backdrop-filter: blur(2px);
 
   .sd-mid {

@@ -2,5 +2,6 @@ export type SwallPaperTy = {
   name: string,
   url: string,
   themeColor: string,
-  attribute: string
+  attribute: string,
+  wallpaperId?: string,
 }

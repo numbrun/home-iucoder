@@ -15,20 +15,15 @@ export default abstract class DataBeforeGuard {
   }
   //初始化背景
   static initWallpaper() {
+    //读取全部背景参数 进行设置
     localStorage.setItem('WALLPAPER-PICTURE', JSON.stringify(wallpaper.wallpaperImg));
-    // localStorage.setItem('WALLPAPER-VIDEO', JSON.stringify(wallpaper.video));
 
-    const wallpaperStore = useWallpaperStore();
-    wallpaperStore.SET_CURRENTWALLPAPER(wallpaperStore.getAllPictureWallpaper[0]);
-
-    // if (wallpaperStore.getCurrentWallpaper) {
-    //   console.log(' 本地',)
-    //   wallpaperStore.SET_CURRENTWALLPAPER(wallpaperStore.getCurrentWallpaper);
-    // } else {
-    //   console.log('初始化',)
-
-    //   wallpaperStore.SET_CURRENTWALLPAPER(wallpaperStore.getAllPictureWallpaper[0]);
-    // }
+    const wallpaperStore = useWallpaperStore()
+    if (wallpaperStore.GET_CurrentWallpaper()) {
+      wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getCurrentWallpaper);
+    } else {
+      wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getAllPictureWallpaper[0]);
+    }
   }
   //初始化搜索引擎列表
   static initSearchEngine() {

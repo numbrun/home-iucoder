@@ -1,32 +1,32 @@
 <template>
-  <div class="ya-matter flex flex-direction align-center">
-    <header class="flex flex-direction justify-center align-center">
-      <HeadDate @click="handleClick" />
-      <SearchEngine class="se" />
-    </header>
-    <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
+  <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
+    <div class="ya-matter flex flex-direction align-center">
+      <header class="flex flex-direction justify-center align-center">
+        <HeadDate @click="handleClick" />
+        <SearchEngine class="se" />
+      </header>
       <main>
         <section class="grid-stack beautiful-sm-scroll">
         </section>
       </main>
-      <template #overlay>
-        <a-menu>
-          <a-menu-item key="1" @click.stop="addNewWidget()">
-            <AntdIcon :name="'PlusOutlined'" :style="'font-size: 14px'" />
-            <span style="float: right;">添加图标</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <AntdIcon :name="'SwapOutlined'" :style="'font-size: 14px'" />
-            <span style="float: right;">切换壁纸</span>
-          </a-menu-item>
-          <a-menu-item key="3" @click.stop="compact()">
-            <AntdIcon :name="'AppstoreOutlined'" :style="'font-size: 14px'" />
-            <span style="float: right;">整理图标</span>
-          </a-menu-item>
-        </a-menu>
-      </template>
-    </a-dropdown>
-  </div>
+    </div>
+    <template #overlay>
+      <a-menu>
+        <a-menu-item key="1" @click.stop="addNewWidget()">
+          <AntdIcon :name="'PlusOutlined'" :style="'font-size: 14px'" />
+          <span style="float: right;">添加图标</span>
+        </a-menu-item>
+        <a-menu-item key="2" @click.stop="changeWallImg()">
+          <AntdIcon :name="'SwapOutlined'" :style="'font-size: 14px'" />
+          <span style="float: right;">切换壁纸</span>
+        </a-menu-item>
+        <a-menu-item key="3" @click.stop="compact()">
+          <AntdIcon :name="'AppstoreOutlined'" :style="'font-size: 14px'" />
+          <span style="float: right;">整理图标</span>
+        </a-menu-item>
+      </a-menu>
+    </template>
+  </a-dropdown>
 </template>
 
 <script lang="ts" setup>
@@ -37,10 +37,12 @@ import HeadCalendar from './HeadCalendar.vue';
 import { useGridsStore } from '@/store/grids';
 import { defineProps, defineEmits, ref, onMounted, render, compile, createApp } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
+import { useWallpaperStore } from '@/store/wallpaper';
+
 
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
- 
+
 onMounted(() => {
   grid = GridStack.init({
     float: false,
@@ -94,6 +96,19 @@ const handleClick = (option: navIconConfig) => {
 //整理图标
 const compact = () => {
   grid.compact();
+}
+//切换壁纸
+const changeWallImg = () => {
+  const wallpaperStore = useWallpaperStore()
+  let _current = wallpaperStore.GET_CurrentWallpaper()
+  console.log('_current', _current)
+  console.log('wallpaperStore.getAllPictureWallpaper', wallpaperStore.getAllPictureWallpaper.length)
+  let currentId = _current.wallpaperId++
+  if (_current.wallpaperId > wallpaperStore.getAllPictureWallpaper.length) {
+    currentId = 0
+  }
+  console.log('_current.wallpaperId', currentId)
+  wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getAllPictureWallpaper[currentId]);
 }
 function loadHomeJson() {
   useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {

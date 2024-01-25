@@ -14,15 +14,16 @@ onBeforeMount(() => {
   DataBeforeGuard.init();
 })
 onMounted(() => {
-  transBackground();
+  // transBackground();
 });
 
 function transBackground(): void {
-  console.log('useWallpaperStore().谁快', useWallpaperStore().getCurrentWallpaper)
-  if (useWallpaperStore().getCurrentWallpaper.attribute === 'picture') {
+  const wallpaperStore = useWallpaperStore();
+  let _currentWallpaper = wallpaperStore.GET_CurrentWallpaper() || {};
+  if (_currentWallpaper.attribute === 'picture') {
     // 设置的背景是图片 设置背景
     const domApp = document.querySelector('#app') as HTMLElement;
-    domApp.style.background = `url(${useWallpaperStore().getCurrentWallpaper.url}) no-repeat`;
+    domApp.style.background = `url(${_currentWallpaper.url}) no-repeat`;
     domApp.style.backgroundSize = 'cover';
     domApp.style.backgroundAttachment = 'fixed';
   }
