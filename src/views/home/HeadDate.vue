@@ -1,5 +1,5 @@
 <template>
-    <div class="head-date-box">
+    <div :style="modeStore.GET_Mode ? 'margin-bottom: 40px' : ''" class="head-date-box">
         <div class="app-time">
             <time class="hh">{{ fixNum(curDate.hours) }}</time>
             <span class="colon">:</span>
@@ -7,7 +7,7 @@
             <span class="colon">:</span>
             <span class="sec">{{ fixNum(curDate.seconds) }}</span>
         </div>
-        <div class="app-date">
+        <div v-if="!modeStore.GET_Mode" class="app-date">
             <span class="time-month">{{ fixNum(curMonth) }}月{{ fixNum(curDay) }}日</span>
             <span class="time-week">{{ curWeek }}</span>
             <span class="time-lunar">{{ lunarDay }}</span>
@@ -17,6 +17,13 @@
 <script lang="ts"  setup>
 import { onMounted, ref } from "vue";
 import { getLunar } from "chinese-lunar-calendar";
+import { useModeStore } from '@/store/useMode';
+const modeStore = useModeStore()
+const timeSize = ref('70px')
+
+watch(() => modeStore.GET_Mode, val => {
+    timeSize.value = val ? '130px' : '70px'
+}, { deep: false, immediate: true });
 
 let curYear = ref(); // 当前年份
 let curMonth = ref(); // 当前月份
@@ -83,19 +90,21 @@ const fixNum = (number: Number, digits = 2) => {
   
 <style scoped lang="scss">
 .head-date-box {
-    color: #fff;
+    // color: #fff;
+    color: rgba(245, 245, 250, 0.9);
     text-shadow: 0 2px 6px rgb(0 0 0 / 16%);
     text-align: center;
 
     .app-time {
-        font-size: $timeSize;
-        // font-family: var(--time-font);
+        font-size: v-bind("timeSize");
+        // font-size: $timeSize;
         user-select: none;
         font-weight: $timeFontWeight;
         text-shadow: 0 2px 6px rgb(0 0 0 / 16%);
         display: inline-block;
         line-height: 80px;
         transition: font .2s;
+        font-family: mind-demi-bold;
 
         .colon {
             vertical-align: calc($timeSize / 12);

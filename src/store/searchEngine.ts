@@ -5,7 +5,7 @@ import { SearchEngineTy } from '~/searchEngine'
 export const useSearchEngineStore = defineStore('searchEngine', {
   state: () => {
     return {
-      currentSearchEngine: JSON.parse(localStorage.getItem('CURRENTSEARCH-ENGINE')!),
+      currentSearchEngine: JSON.parse(localStorage.getItem('CURRENT-SEARCH-ENGINE')!),
     }
   },
   getters: {
@@ -18,7 +18,7 @@ export const useSearchEngineStore = defineStore('searchEngine', {
       console.log('searchEngineObj',searchEngineObj)
       this.$patch((state) => {
         state.currentSearchEngine = searchEngineObj
-        localStorage.setItem('CURRENTSEARCH-ENGINE', JSON.stringify(searchEngineObj))
+        localStorage.setItem('CURRENT-SEARCH-ENGINE', JSON.stringify(searchEngineObj))
       })
     }
   }

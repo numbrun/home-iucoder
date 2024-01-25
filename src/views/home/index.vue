@@ -1,14 +1,18 @@
 <template>
   <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '110px' }">
-    <div class="ya-matter flex flex-direction align-center">
-      <header class="flex flex-direction justify-center align-center">
-        <HeadDate @click="handleClick" />
+    <div class="ya-matter flex flex-direction align-center home-box">
+      <header :style="modeStore.GET_Mode ? 'margin-top: 18vh;' : ''"
+        class="flex flex-direction justify-center align-center">
+        <HeadDate @click="clickHeadDate" />
         <SearchEngine class="se" />
       </header>
-      <main>
+      <main v-show="!modeStore.GET_Mode">
         <section class="grid-stack beautiful-sm-scroll">
         </section>
       </main>
+      <footer v-if="modeStore.GET_Mode" class="footer-box">
+        <BottomSentence />
+      </footer>
     </div>
     <template #overlay>
       <a-menu>
@@ -34,14 +38,16 @@ import { GridStack } from 'gridstack';
 import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
 import HeadCalendar from './HeadCalendar.vue';
+import BottomSentence from './BottomSentence.vue';
 import { useGridsStore } from '@/store/grids';
 import { defineProps, defineEmits, ref, onMounted, render, compile, createApp } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 import { useWallpaperStore } from '@/store/wallpaper';
-
+import { useModeStore } from '@/store/useMode';
 
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
+const modeStore = useModeStore()
 
 onMounted(() => {
   grid = GridStack.init({
@@ -97,6 +103,11 @@ const handleClick = (option: navIconConfig) => {
 const compact = () => {
   grid.compact();
 }
+//更改模式
+const clickHeadDate = () => {
+  modeStore.SET_Mode()
+  console.log('modeStore', modeStore.GET_Mode)
+}
 //切换壁纸
 const changeWallImg = () => {
   const wallpaperStore = useWallpaperStore()
@@ -123,7 +134,7 @@ function addComponent(row: navIconConfig) {
   let sizew = row.size.split('x')[0]
   let sizeh = row.size.split('x')[1]
   const el2 = `
-      <div  style='background:blue;height:100%' >
+      <div  style='background:transpant;height:100%' >
         12
       <HeadCalendar/>
       2
@@ -179,14 +190,22 @@ header {
   min-height: 200px;
 }
 
-main {
-  width: 90%;
-  height: 70vh;
+.home-box {
+  position: relative;
+  main {
+    width: 90%;
+    height: 70vh;
 
-  section {
-    width: 100%;
-    max-height: 100%;
-    overflow-y: scroll;
+    section {
+      width: 100%;
+      max-height: 100%;
+      overflow-y: scroll;
+    }
+
+  }
+  footer {
+    position: absolute;
+    bottom: 8vh;
   }
 }
 </style>

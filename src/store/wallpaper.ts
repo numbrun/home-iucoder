@@ -14,7 +14,7 @@ export const useWallpaperStore = defineStore('wallpaper', {
     getCurrentWallpaper: (state) => {
       //需要执行一次state
       // state.currentWallpaper
-      return JSON.parse(localStorage.getItem('CURRENTWALLPAPER') as string)
+      return JSON.parse(localStorage.getItem('CURRENT-WALLPAPER') as string)
     },
     //获取all背景信息
     getAllPictureWallpaper: () => JSON.parse(localStorage.getItem('WALLPAPER-PICTURE') as string),
@@ -37,11 +37,11 @@ export const useWallpaperStore = defineStore('wallpaper', {
 
       this.$patch((state) => {
         state.currentWallpaper = swallpaperObj
-        localStorage.setItem('CURRENTWALLPAPER', JSON.stringify(swallpaperObj))
+        localStorage.setItem('CURRENT-WALLPAPER', JSON.stringify(swallpaperObj))
       })
     },
     GET_CurrentWallpaper: () => {
-      return JSON.parse(localStorage.getItem('CURRENTWALLPAPER') as string)
+      return JSON.parse(localStorage.getItem('CURRENT-WALLPAPER') as string)
     },
   }
 })

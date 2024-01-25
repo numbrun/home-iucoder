@@ -29,8 +29,8 @@ export default abstract class DataBeforeGuard {
   static initSearchEngine() {
     localStorage.setItem('SEARCH-ENGINE', JSON.stringify(searchEngine.searchList));
     // 初始化默认为第一个
-    if (!localStorage.getItem('CURRENTSEARCH-ENGINE')) {
-      localStorage.setItem('CURRENTSEARCH-ENGINE', JSON.stringify(searchEngine.searchList[0]));
+    if (!localStorage.getItem('CURRENT-SEARCH-ENGINE')) {
+      localStorage.setItem('CURRENT-SEARCH-ENGINE', JSON.stringify(searchEngine.searchList[0]));
     }
   }
   //初始化路由
