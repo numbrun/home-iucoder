@@ -256,3 +256,24 @@ export function getNormalPath(p) {
 export function blobValidate(data) {
   return data.type !== "application/json";
 }
+
+// 复制到剪切板
+export function copyValue(val) {
+  return new Promise((res, rej) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      // navigator clipboard 向剪贴板写文本
+      navigator.clipboard.writeText(val);
+      res(true);
+    } else {
+      // 创建text area
+      const textArea = document.createElement("textarea");
+      textArea.value = val;
+      // 使text area不在viewport，同时设置不可见
+      document.body.appendChild(textArea);
+      textArea.select();
+      // 执行复制命令并移除文本框
+      document.execCommand("copy") ? res(true) : rej(false);
+      textArea.remove();
+    }
+  });
+}
