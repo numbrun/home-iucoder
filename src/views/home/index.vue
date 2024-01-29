@@ -134,7 +134,7 @@ function addComponent(row: navIconConfig) {
   let sizew = row.size.split('x')[0]
   let sizeh = row.size.split('x')[1]
   const el2 = `
-      <div  style='background:transpant;height:100%' >
+      <div  style='background:blue;height:100%' >
         12
       <HeadCalendar/>
       2

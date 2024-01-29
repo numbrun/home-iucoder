@@ -1,14 +1,14 @@
 import request from "@/utils/request.ts";
 
+const API_YIYAN = "https://v1.hitokoto.cn";
 // 一言语句接口
 export function getSentence(query) {
   return request({
-    url: "https://v1.hitokoto.cn/",
+    url: API_YIYAN,
     method: "get",
     params: query,
   });
 }
-
 
 export function addJob(data) {
   return request({
@@ -34,4 +34,3 @@ export function delJob(jobId) {
     method: "delete",
   });
 }
- 

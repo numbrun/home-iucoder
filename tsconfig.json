@@ -32,6 +32,6 @@
     "skipLibCheck": true
   },
   //include包含文件夹会被ts进行读取
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings", "auto-imports.d.ts", "type.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings", "auto-imports.d.ts", "type.d.ts", "src/utils/index.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

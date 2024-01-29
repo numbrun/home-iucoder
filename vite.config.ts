@@ -39,6 +39,20 @@ export default defineConfig({
       path: 'path-browserify' // 解决在浏览器中使用类似node原生path模块的问题
     }
   },
+  // vite 相关配置
+  server: {
+    port: 8080,
+    host: true,
+    open: true,
+    proxy: {
+      // https://cn.vitejs.dev/config/#server-proxy
+      '/v1.hitokoto.cn': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (p) => p.replace(/^\/v1.hitokoto.cn/, '')
+      }
+    }
+  },
   css: {
     preprocessorOptions: {
       //define global scss variable 全局css变量可使用
