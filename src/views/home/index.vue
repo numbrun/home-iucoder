@@ -6,6 +6,7 @@
         <HeadDate @click="clickHeadDate" />
         <SearchEngine class="se" />
       </header>
+      <div id="qwe"></div>
       <main v-show="!modeStore.GET_Mode">
         <section class="grid-stack beautiful-sm-scroll">
         </section>
@@ -31,6 +32,7 @@
       </a-menu>
     </template>
   </a-dropdown>
+  <!-- <test /> -->
 </template>
 
 <script lang="ts" setup>
@@ -38,13 +40,14 @@ import { GridStack } from 'gridstack';
 import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
 import HeadCalendar from './HeadCalendar.vue';
+import test from './test.vue';
 import BottomSentence from './BottomSentence.vue';
 import { useGridsStore } from '@/store/grids';
 import { defineProps, defineEmits, ref, onMounted, render, compile, createApp } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 import { useWallpaperStore } from '@/store/wallpaper';
 import { useModeStore } from '@/store/useMode';
-
+const app = createApp({});
 const $message: { success: Function } = inject('$message')!;
 let grid: any;
 const modeStore = useModeStore()
@@ -53,6 +56,7 @@ onMounted(() => {
   grid = GridStack.init({
     float: false,
     disableResize: true,
+    acceptWidgets: true, //接受从其他网格或外部拖动的小部件
     // cellHeight: '120px',//一个单元格高度
     // cellHeight: '8vh',
     minRow: 1,
@@ -122,32 +126,78 @@ const changeWallImg = () => {
   wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getAllPictureWallpaper[currentId]);
 }
 function loadHomeJson() {
-  useGridsStore().getSelectedGrids.navIconConfig.forEach(v => {
+  useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
     if (v.type == 'icon' || v.type == 'add') {
       addNewWidget(v);
     } else if (v.type == 'component') {
-      addComponent(v);
+      addComponent(v, i);
     }
   });
+  useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
+    if (v.type == 'component') {
+      // addComponent2(v, i);
+    }
+  });
+  addComponent2();
+  addComponent2();
 }
-function addComponent(row: navIconConfig) {
+function addComponent(row: navIconConfig, index) {
   let sizew = row.size.split('x')[0]
   let sizeh = row.size.split('x')[1]
-  const el2 = `
-      <div  style='background:blue;height:100%' >
-        12
-      <HeadCalendar/>
-      2
-      </div>
-  `;
   // 添加一个网格项
-  const widget = grid.addWidget({
+  grid.addWidget({
     w: sizew,
     h: sizeh,
-    // content: HeadDate,
-    content: el2,
+    content: '',
   });
 }
+function addComponent2() {
+  let items = [...new Set(document.querySelectorAll('.grid-stack-item'))]
+
+  const content: any = document.getElementById("qwe");
+  // const content: any = items[0]
+
+  console.log('content', content)
+  const itemDom = document.createElement("div");
+  itemDom.setAttribute("id", "card_");
+  const app = createApp(HeadCalendar, { name: "xiaoming2" });
+  app.mount("#card_");
+
+  content.appendChild(itemDom);
+  // content.innerHTML = itemDom
+  // content.style = 'background-color: #fff;'
+
+  // 添加一个网格项
+  grid.addWidget({
+    w: 2,
+    h: 2,
+    content: content,
+  });
+}
+function loadGridItem(widget) {
+  // 把组件仿佛第九个方块中
+  // 找到第九个方块
+  // let widgetEl = widget.el;
+  // let content = widgetEl.querySelector(".grid-stack-item-content");
+
+  let itemDom = document.createElement("div");
+  itemDom.setAttribute("id", "card_" + widget._id);
+
+  // 把组件放入方块中
+  // content.appendChild(itemDom);
+
+
+  // 局部注册组件，组件放入方块中
+  let WidgetComponent = app.component('HeadCalendar', HeadCalendar);
+  console.log('WidgetComponent', WidgetComponent)
+  return ''
+  // // 调整大小，echarts图resize
+  // grid.on('resizestop', function (event, gridEl) {
+  //   // 当你缩放暂停，触发条件，重新绘图resize
+  //   instance.handleResize()
+  // })
+}
+
 function addNewWidget(option: any = {}) {
   //传递对象需要json.stringify()把javascript对象转换成json字符串;事件名后边需要跟单引号
   //onclick='deleteFun($f"$fISON.stringify(row)}"})
@@ -192,6 +242,7 @@ header {
 
 .home-box {
   position: relative;
+
   main {
     width: 90%;
     height: 70vh;
@@ -203,6 +254,7 @@ header {
     }
 
   }
+
   footer {
     position: absolute;
     bottom: 8vh;

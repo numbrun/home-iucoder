@@ -24,7 +24,6 @@ export const useWallpaperStore = defineStore('wallpaper', {
   actions: {
     //设置背景图
     SET_CurrentWallpaper(swallpaperObj: any = {}): void {
-      console.log('swallpaperObj', swallpaperObj)
       if (Object.keys(swallpaperObj).length === 0) return
 
       if (swallpaperObj.attribute === 'picture') {
