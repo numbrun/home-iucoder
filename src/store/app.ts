@@ -3,7 +3,7 @@ import router, { constantRoutes } from '@/router';
 // import { RouterRowTy } from '~/router';
 
 type LsRouteTy = Pick<any, 'name' | 'meta' | 'path'>
-
+//左侧路由相关模块
 export const useAppStore = defineStore('app', {
   state: () => ({
     cachedViews: [] as Array<string>,

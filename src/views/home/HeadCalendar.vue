@@ -48,10 +48,14 @@ onMounted(() => {
 .headCalendar-box {
     position: relative;
     text-align: center;
+    width: 100%;
+    height: 100%;
 
     .calendar-card {
-        width: 180px;
-        height: 180px;
+        width: 100%;
+        height: 100%;
+        max-width: 500px;
+        max-height: 500px;
         font-family: PingFang SC, -apple-system, BlinkMacSystemFont, Helvetica Neue,
             Helvetica, sans-serif;
         background: #fff;
@@ -91,6 +95,7 @@ onMounted(() => {
             .cal-footer-w {
                 color: #222;
                 font-size: 16px;
+                margin-bottom: 5px;
             }
         }
     }

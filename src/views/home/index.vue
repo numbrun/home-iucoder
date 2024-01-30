@@ -6,7 +6,6 @@
         <HeadDate @click="clickHeadDate" />
         <SearchEngine class="se" />
       </header>
-      <div id="qwe"></div>
       <main v-show="!modeStore.GET_Mode">
         <section class="grid-stack beautiful-sm-scroll">
         </section>
@@ -135,7 +134,7 @@ function loadHomeJson() {
   });
   useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
     if (v.type == 'component') {
-      // addComponent2(v, i);
+      addComponent(v, i);
     }
   });
   addComponent2();
@@ -152,20 +151,17 @@ function addComponent(row: navIconConfig, index) {
   });
 }
 function addComponent2() {
-  let items = [...new Set(document.querySelectorAll('.grid-stack-item'))]
-
-  const content: any = document.getElementById("qwe");
-  // const content: any = items[0]
-
-  console.log('content', content)
+  let items = [...new Set(document.querySelectorAll('.grid-stack-item-content'))]
+  console.log('items',items)
+  const content: any = items[3]
   const itemDom = document.createElement("div");
   itemDom.setAttribute("id", "card_");
+  // itemDom.style = 'height: 100%;'
   const app = createApp(HeadCalendar, { name: "xiaoming2" });
   app.mount("#card_");
 
   content.appendChild(itemDom);
   // content.innerHTML = itemDom
-  // content.style = 'background-color: #fff;'
 
   // 添加一个网格项
   grid.addWidget({

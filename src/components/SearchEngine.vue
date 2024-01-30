@@ -1,7 +1,6 @@
 <template>
   <div class="top-search flex justify-between align-center">
-
-    <a-popover color="rgba(255, 255, 255, 0.8" placement="bottom" trigger="click" overlayClassName="searchPopop"
+    <a-popover color="rgba(255, 255, 255, 0.8)" placement="bottom" trigger="click" overlayClassName="searchPopop"
       v-model:open="visible">
       <template #title>
         <header class="card-head flex justify-between">
@@ -82,7 +81,7 @@ const currentSearchEngine = computed(() => useSearchEngineStore().getCurrentSear
   width: 100%;
   max-width: 600px;
   margin: 3vh auto 20px;
-  height: 46px;
+  height: 46px ;
   border-radius: 100px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.8);
@@ -101,10 +100,12 @@ const currentSearchEngine = computed(() => useSearchEngineStore().getCurrentSear
   .card-head {
     width: 100%;
     height: 30px;
+
     .card-head-left {
       font-size: 14px;
       color: #777;
     }
+
     .card-head-right {
       font-size: 14px;
       color: $red-400;

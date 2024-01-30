@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import Antd from 'ant-design-vue';
-// import 'ant-design-vue/dist/antd.less' // or 'ant-design-vue/dist/antd.less'样式不用引也行
 
 import '@/assets/css/index.scss'; // global css
 import '@/assets/css/flex-class.css'; // 引入flex快写样式
