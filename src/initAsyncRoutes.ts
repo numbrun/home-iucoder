@@ -11,6 +11,7 @@ function initAsnycRoutes() {
       e.component = () => import('@/views/common-template/index.vue');
       router.addRoute('father', e);
       useAppStore().MODIFY_ISINITASYNCROUTES(true);
+      console.log('e',e)
       useAppStore().ADD_ASYNC_ROUTES(e);
     });
   } else {

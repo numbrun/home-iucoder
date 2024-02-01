@@ -1,9 +1,9 @@
 {
   "wallpaperImg": [
     {
-      "name": "iyk1",
-      "url": "https://files.codelife.cc/itab/defaultWallpaper/defaultWallpaper.webp",
-      "themeColor": "rgb(64,57,51,0.3)",
+      "name": "iyk6",
+      "url": "https://www4.bing.com//th?id=OHR.CastleriggStoneCircleUK_ZH-CN1174541384_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=h",
+      "themeColor": "rgb(44,91,121,0.3)",
       "attribute": "picture",
       "wallpaperId": 1
     },
@@ -36,9 +36,9 @@
       "wallpaperId": 5
     },
     {
-      "name": "iyk6",
-      "url": "https://www4.bing.com//th?id=OHR.CastleriggStoneCircleUK_ZH-CN1174541384_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=h",
-      "themeColor": "rgb(44,91,121,0.3)",
+      "name": "iyk1",
+      "url": "https://files.codelife.cc/itab/defaultWallpaper/defaultWallpaper.webp",
+      "themeColor": "rgb(64,57,51,0.3)",
       "attribute": "picture",
       "wallpaperId": 6
     }

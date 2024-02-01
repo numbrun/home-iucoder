@@ -3,7 +3,7 @@ import router, { constantRoutes } from '@/router';
 // import { RouterRowTy } from '~/router';
 
 type LsRouteTy = Pick<any, 'name' | 'meta' | 'path'>
-
+//左侧路由相关模块
 export const useAppStore = defineStore('app', {
   state: () => ({
     cachedViews: [] as Array<string>,
@@ -24,12 +24,13 @@ export const useAppStore = defineStore('app', {
     }
   },
   actions: {
+    //动态路由增加
     ADD_ASYNC_ROUTES(routeObj: any) {
       this.$patch(state => {
         state.routes[0].children?.push(routeObj);
       });
     },
-
+    //移除路由
     async REMOVE_ASYNC_ROUTE() {
       let prevRoute;
       this.$patch(state => {
