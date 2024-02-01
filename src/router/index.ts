@@ -26,7 +26,7 @@ export const constantRoutes: any = [
         path: 'designer',
         name: 'designer',
         component: () => import('@/views/designer/index.vue'),
-        meta: { title: '设计', icon: 'LikeOutlined' },
+        meta: { title: '设计', icon: 'ScissorOutlined' },
       },
       {
         path: 'product',

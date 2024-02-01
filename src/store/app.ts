@@ -29,7 +29,7 @@ export const useAppStore = defineStore('app', {
         state.routes[0].children?.push(routeObj);
       });
     },
-
+    //移除路由
     async REMOVE_ASYNC_ROUTE() {
       let prevRoute;
       this.$patch(state => {
