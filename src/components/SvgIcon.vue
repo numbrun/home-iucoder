@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { computed } from 'vue';
 
 export default defineComponent({
   name: 'SvgIcon',
@@ -42,4 +42,5 @@ export default defineComponent({
   &:focus {
     outline: none;
   }
-}</style>
+}
+</style>

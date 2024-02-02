@@ -12,11 +12,10 @@
         </div>
         <template #overlay>
           <a-menu>
-            <a-menu-item key="1">编辑</a-menu-item>
+            <!-- <a-menu-item key="1">编辑</a-menu-item> -->
             <a-menu-item key="2" @click.stop="deleteRoute(item)">删除</a-menu-item>
           </a-menu>
         </template>
-
       </a-dropdown>
       </Link>
       <AddGroupBtn>
@@ -50,6 +49,7 @@ const route = useRoute();
 let sidebarThemeColor = ref(useWallpaperStore().getCurrentWallpaperThemeColor)
 let fontColor = ref(calcContrastColor(useWallpaperStore().getCurrentWallpaperThemeColor))
 const selectedRouteName = ref<string>('');
+const routerBasic = ['home', 'coder', 'designer', 'product', 'rest']
 
 onMounted(() => {
   //赋值 高亮
@@ -58,21 +58,25 @@ onMounted(() => {
 function atdIconSelected(name: string) {
   return 'font-size: 20px; color: #eeeeee';
 }
-function deleteRoute(item: any) {
-  if (item.name === 'home') {
-    proxy.$message.error('主页无法删除');
+async function deleteRoute(item: any) {
+  if (routerBasic.includes(item.name)) {
+    proxy.$message.error('系统内置，无法删除');
     return
   }
-  console.log('item.name!', item.name)
-  router.go(-1)
-  router.removeRoute(item.name);
-  proxy.$nextTick(async () => {
-    proxy.selectedRouteName = (await useAppStore().REMOVE_ASYNC_ROUTE())!;
-  });
+  // router.removeRoute(item.name);
+  // 移除路由
+  useAppStore().REMOVE_ASYNC_ROUTE(item.name)
+  //当前删除的路由 是当下进入的路由则去首页
+  if (item.name == route.name) {
+    router.replace(`home`);
+    selectedRouteName.value = 'home'
+  }
 }
 const appStore = useAppStore();
 
 const routes = computed(() => appStore.routes);
+
+console.log('routes', routes.value[0].children)
 
 // 二级子路由需要拼接path 例如：/noob-guide/account-login
 const resolvePath = (basePath: string, routePath: string) => {
