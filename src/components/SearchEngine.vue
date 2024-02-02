@@ -49,7 +49,6 @@ const searchWord = ref('');
 const options = ref<MockVal[]>([]);
 
 const onSearch = (searchText: string) => {
-  console.log('searchText');
   options.value = !searchText
     ? []
     : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
@@ -60,7 +59,6 @@ const mockVal = (str: string, repeat = 1): MockVal => {
   };
 };
 const onSelect = (value: string) => {
-  console.log('onSelect', value);
 };
 
 //点击搜索引擎

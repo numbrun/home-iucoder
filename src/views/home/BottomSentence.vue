@@ -36,7 +36,6 @@ import { copyValue } from "@/utils/index";
 import { message } from 'ant-design-vue';
 import { useBaseConfigStore } from "@/store/index";
 const BaseStore = useBaseConfigStore()
-console.log('BaseStore', BaseStore.baseConfig)
 
 let currentSentence = ref({
     show: true,
@@ -46,7 +45,6 @@ let currentSentence = ref({
     yiyanUuid: "8f1b99a6",
 });
 onMounted(() => {
-    console.log('BaseStore.GET_BaseYiyan', BaseStore.GET_BaseYiyan)
     if (BaseStore.GET_BaseYiyan?.yiyanUuid) {
         currentSentence.value = BaseStore.GET_BaseYiyan
     }
@@ -63,7 +61,6 @@ function search() {
 }
 async function next() {
     let res = await getSentence()
-    console.log('res', res)
     if (res.uuid) {
         currentSentence.value = {
             show: true,

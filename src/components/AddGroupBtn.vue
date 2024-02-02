@@ -84,7 +84,6 @@ let data = ref({
   ]
 })
 function selectIcon(row: any = {}) {
-  console.log('row', row)
   data.value.selectedIcon = row.iconName;
   data.value.groupName = row.iconText;
 }
@@ -97,12 +96,12 @@ const submitGroup = () => {
   }
 
   if (useAppStore().getRouteIsExisted(data.value.selectedIcon.toLowerCase())) {
-    console.log('this', proxy)
     proxy.$message.error('此类型模块已存在!');
     return;
   }
 
   const localStorageExistedAsyncRoutes = JSON.parse(localStorage.getItem('ASYNC_ROUTES')!);
+  console.log('localStorageExistedAsyncRoutes',localStorageExistedAsyncRoutes)
   const routeObj = {
     path: data.value.selectedIcon.toLowerCase(),
     name: data.value.selectedIcon.toLowerCase(),
@@ -113,6 +112,7 @@ const submitGroup = () => {
     component: () => import('@/views/common-template/index.vue')
   };
 
+  console.log('localStorageExistedAsyncRoutes',localStorageExistedAsyncRoutes)
   if (localStorageExistedAsyncRoutes) {
     localStorageExistedAsyncRoutes.push(routeObj);
     localStorage.setItem('ASYNC_ROUTES', JSON.stringify(localStorageExistedAsyncRoutes));

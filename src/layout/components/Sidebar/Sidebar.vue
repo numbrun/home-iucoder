@@ -61,12 +61,14 @@ function atdIconSelected(name: string) {
 function deleteRoute(item: any) {
   if (item.name === 'home') {
     proxy.$message.error('主页无法删除');
-  } else {
-    router.removeRoute(item.name!);
-    proxy.$nextTick(async () => {
-      proxy.selectedRouteName = (await useAppStore().REMOVE_ASYNC_ROUTE())!;
-    });
+    return
   }
+  console.log('item.name!', item.name)
+  router.go(-1)
+  router.removeRoute(item.name);
+  proxy.$nextTick(async () => {
+    proxy.selectedRouteName = (await useAppStore().REMOVE_ASYNC_ROUTE())!;
+  });
 }
 const appStore = useAppStore();
 
@@ -84,7 +86,6 @@ const resolvePath = (basePath: string, routePath: string) => {
 };
 
 const chooseBlock = (routeName: string) => {
-  console.log('routeName', routeName);
   selectedRouteName.value = routeName!;
 };
 

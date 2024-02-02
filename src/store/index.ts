@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 
 const storageBase = JSON.parse(localStorage.getItem('CURRENT-BASECONFIG') as string) || {}
 
-console.log('storageBase', storageBase)
-
 //基础配置
 export const useBaseConfigStore = defineStore('baseConfig', {
     // 其他的配置项...

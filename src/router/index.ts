@@ -39,7 +39,13 @@ export const constantRoutes: any = [
         name: 'rest',
         component: () => import('@/views/rest/index.vue'),
         meta: { title: '摸鱼', icon: 'CoffeeOutlined' },
-      }
+      },
+      // {
+      //   path: '/:pathMatch(.*)*',
+      //   name: 'pathMatch',
+      //   component: () => import('@/views/rest/index.vue'),
+      //   meta: { title: '404', icon: 'CoffeeOutlined' },
+      // }
     ]
   }
 ]

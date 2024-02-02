@@ -74,7 +74,6 @@ const init = () => {
 
     // 只执行一次 在销毁前清定时器
     // this.$once("hook:beforeDestroy", () => {
-    //     console.log('clear');
     //     clearInterval(clockTimer);
     // });
 }

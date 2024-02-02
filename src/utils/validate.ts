@@ -14,7 +14,6 @@ export function calcContrastColor(color: string): string {
   }
 
   const standardColor = color.startsWith('rgba') ? Number(color.slice(5, -1).split(',')[0]) : Number(color.slice(4, -1).split(',')[0])
-  console.log('standardColor',standardColor)
   if (standardColor > Math.floor(200)) {
     return '#c6d3dd'
   } else {

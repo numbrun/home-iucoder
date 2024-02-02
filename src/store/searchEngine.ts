@@ -15,7 +15,6 @@ export const useSearchEngineStore = defineStore('searchEngine', {
   actions: {
     //设置当前选中的搜索引擎
     SET_CURRENTSEARCH_ENGINE(searchEngineObj: SearchEngineTy) :void {
-      console.log('searchEngineObj',searchEngineObj)
       this.$patch((state) => {
         state.currentSearchEngine = searchEngineObj
         localStorage.setItem('CURRENT-SEARCH-ENGINE', JSON.stringify(searchEngineObj))

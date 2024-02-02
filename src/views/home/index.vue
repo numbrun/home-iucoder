@@ -100,7 +100,6 @@ const handleClick = (option: navIconConfig) => {
   if (option.type === "add") {
 
   }
-  console.log(option)
 }
 //整理图标
 const compact = () => {
@@ -109,19 +108,15 @@ const compact = () => {
 //更改模式
 const clickHeadDate = () => {
   modeStore.SET_Mode()
-  console.log('modeStore', modeStore.GET_Mode)
 }
 //切换壁纸
 const changeWallImg = () => {
   const wallpaperStore = useWallpaperStore()
   let _current = wallpaperStore.GET_CurrentWallpaper()
-  console.log('_current', _current)
-  console.log('wallpaperStore.getAllPictureWallpaper', wallpaperStore.getAllPictureWallpaper.length)
   let currentId = _current.wallpaperId++
   if (_current.wallpaperId > wallpaperStore.getAllPictureWallpaper.length) {
     currentId = 0
   }
-  console.log('_current.wallpaperId', currentId)
   wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getAllPictureWallpaper[currentId]);
 }
 function loadHomeJson() {
@@ -152,7 +147,6 @@ function addComponent(row: navIconConfig, index) {
 }
 function addComponent2() {
   let items = [...new Set(document.querySelectorAll('.grid-stack-item-content'))]
-  console.log('items',items)
   const content: any = items[3]
   const itemDom = document.createElement("div");
   itemDom.setAttribute("id", "card_");
@@ -185,7 +179,6 @@ function loadGridItem(widget) {
 
   // 局部注册组件，组件放入方块中
   let WidgetComponent = app.component('HeadCalendar', HeadCalendar);
-  console.log('WidgetComponent', WidgetComponent)
   return ''
   // // 调整大小，echarts图resize
   // grid.on('resizestop', function (event, gridEl) {

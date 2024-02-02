@@ -8,12 +8,13 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     cachedViews: [] as Array<string>,
     routes: constantRoutes, // 静态路由和动态路由集合
-    isInitAsyncRoutes: false as boolean
+    isInitAsyncRoutes: false as boolean //动态路由状态
   }),
   getters: {
     getAsyncRoutes: () => JSON.parse(localStorage.getItem('ASYNC_ROUTES')!),
     getIsInitAsyncRoutes: state => state.isInitAsyncRoutes,
     getRouteIsExisted: (): Function => (routeName: string): boolean => {
+      
       const asyncRoutes = JSON.parse(localStorage.getItem('ASYNC_ROUTES')!);
       if (!asyncRoutes) return false;
       const result = asyncRoutes.findIndex((v: LsRouteTy) => v.name === routeName);
@@ -44,6 +45,7 @@ export const useAppStore = defineStore('app', {
       return prevRoute;
     },
 
+    // 更改动态路由状态
     MODIFY_ISINITASYNCROUTES(bool: boolean) {
       this.$patch(state => {
         state.isInitAsyncRoutes = bool;

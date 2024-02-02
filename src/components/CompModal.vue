@@ -60,7 +60,6 @@ const showModal = () => {
 };
 const { x, y, isDragging } = useDraggable(modalTitleRef);
 const handleOk = (e: MouseEvent) => {
-    console.log(e);
     open.value = false;
 };
 const startX = ref<number>(0);

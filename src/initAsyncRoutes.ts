@@ -4,14 +4,15 @@ import router from '@/router';
 import { useAppStore } from '@/store/app';
 import { useGridsStore } from '@/store/grids';
 
+// 初始化动态路由
 function initAsnycRoutes() {
   const asyncRoutes = useAppStore().getAsyncRoutes;
-  if (asyncRoutes) {
+  if (asyncRoutes && asyncRoutes.length > 0) {
+    // 对存储的动态路由进行遍历 增到路由中
     asyncRoutes.forEach((e: any) => {
       e.component = () => import('@/views/common-template/index.vue');
       router.addRoute('father', e);
       useAppStore().MODIFY_ISINITASYNCROUTES(true);
-      console.log('e',e)
       useAppStore().ADD_ASYNC_ROUTES(e);
     });
   } else {
@@ -19,6 +20,7 @@ function initAsnycRoutes() {
   }
 }
 
+//前置守卫
 router.beforeEach((to: RouteLocationNormalized, from, next) => {
   if (useAppStore().getIsInitAsyncRoutes) {
     useGridsStore().SYNC_SELECTED_GRIDS(to.meta.title as string);

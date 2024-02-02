@@ -14,7 +14,11 @@ export const useGridsStore = defineStore('grids', {
   actions: {
     SYNC_SELECTED_GRIDS(name: string) {
       this.$patch((state) => {
-        state.selectedGrids = JSON.parse(localStorage.getItem(name.toUpperCase())!)
+        if(name){
+          state.selectedGrids = JSON.parse(localStorage.getItem(name.toUpperCase())!)
+        }else{
+          
+        }
       })
     },
 
