@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-//模式 简洁模式｜常规模式
+//模式 简洁模式true｜常规模式false
 export const useModeStore = defineStore('useMode', {
   // 其他的配置项...
   state: () => {

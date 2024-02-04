@@ -13,7 +13,8 @@
         <template #overlay>
           <a-menu>
             <!-- <a-menu-item key="1">编辑</a-menu-item> -->
-            <a-menu-item key="2" @click.stop="deleteRoute(item)">删除</a-menu-item>
+            <!-- stop -->
+            <a-menu-item key="2" @click="deleteRoute(item)">删除</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>

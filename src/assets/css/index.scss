@@ -1,13 +1,41 @@
-@import './variables.scss';
+@import "./variables.scss";
 
-html,body {
+/* PC端样式 */
+/* 在视口宽度大于等于 1024px 时生效 */
+@media (min-width: 1366px) {
+  /* PC端的样式 */
+  /* 例如设置页面宽度、字体大小等 */
+}
+
+/* 平板端样式 */
+/* 在视口宽度小于 1366px 且大于等于 768px 时生效 */
+@media (max-width: 1365px) and (min-width: 768px) {
+  /* 平板端的样式 */
+  /* 例如调整页面布局、字体大小等 */
+}
+
+/* 移动端样式 */
+/* 在视口宽度小于 768px 时生效 */
+@media (max-width: 767px) {
+  /* 移动端的样式 */
+  /* 例如调整页面布局、字体大小等 */
+}
+html,
+body {
   width: 100%;
   height: 100%;
   box-sizing: border-box; /* 指定盒模型为 IE模型(怪异模式)更方便后面设置页面 */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    PingFang SC,
+    Hiragino Sans GB,
+    Microsoft YaHei,
+    Arial,
+    sans-serif;
 }
 
 label {
@@ -42,8 +70,6 @@ div:focus {
   outline: none;
 }
 
-
-
 /* 业务样式 */
 .grid-stack {
   background: #00000000;
@@ -54,7 +80,12 @@ div:focus {
   text-align: center;
 }
 
-
 .grid-stack-item-removing {
   opacity: 0.5;
+}
+
+.common-bg {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  color: #fff;
 }

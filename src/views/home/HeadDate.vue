@@ -1,6 +1,6 @@
 <template>
     <div :style="modeStore.GET_Mode ? 'margin-bottom: 40px' : ''" class="head-date-box">
-        <div class="app-time">
+        <div class="app-time" :class="modeStore.GET_Mode ? '' : 'normal'">
             <time class="hh">{{ fixNum(curDate.hours) }}</time>
             <span class="colon">:</span>
             <time class="mm">{{ fixNum(curDate.minutes) }}</time>
@@ -19,11 +19,11 @@ import { onMounted, ref } from "vue";
 import { getLunar } from "chinese-lunar-calendar";
 import { useModeStore } from '@/store/useMode';
 const modeStore = useModeStore()
-const timeSize = ref('70px')
+// const timeSize = ref('70px')
 
-watch(() => modeStore.GET_Mode, val => {
-    timeSize.value = val ? '130px' : '70px'
-}, { deep: false, immediate: true });
+// watch(() => modeStore.GET_Mode, val => {
+//     timeSize.value = val ? '1.1rem' : '70px'
+// }, { deep: false, immediate: true });
 
 let curYear = ref(); // 当前年份
 let curMonth = ref(); // 当前月份
@@ -95,8 +95,7 @@ const fixNum = (number: Number, digits = 2) => {
     text-align: center;
 
     .app-time {
-        font-size: v-bind("timeSize");
-        // font-size: $timeSize;
+        // font-size: v-bind("timeSize");
         user-select: none;
         font-weight: $timeFontWeight;
         text-shadow: 0 2px 6px rgb(0 0 0 / 16%);
@@ -110,16 +109,51 @@ const fixNum = (number: Number, digits = 2) => {
         }
     }
 
+    /* PC端样式 */
+    /* 在视口宽度大于等于 1024px 时生效 */
+    @media (min-width: 1366px) {
+
+        /* PC端的样式 */
+        /* 例如设置页面宽度、字体大小等 */
+        .app-time {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* 平板端样式 */
+    /* 在视口宽度小于 1366px 且大于等于 768px 时生效 */
+    @media (max-width: 1365px) and (min-width: 768px) {
+
+        /* 平板端的样式 */
+        /* 例如调整页面布局、字体大小等 */
+        .app-time {
+            font-size: 1.3rem;
+        }
+    }
+
+    /* 移动端样式 */
+    /* 在视口宽度小于 768px 时生效 */
+    @media (max-width: 767px) {
+        /* 移动端的样式 */
+        /* 例如调整页面布局、字体大小等 */
+
+        .app-time {
+            font-size: 1.8rem;
+        }
+    }
+
     .app-date {
         font-size: 16px;
         opacity: 0.88;
         margin-top: 2px;
         text-shadow: 0 2px 4px rgb(0 0 0 / 16%);
-
         span {
             margin: 0 2px;
         }
     }
-}
-</style>
+
+    .normal {
+        font-size: 70px;
+    }
+}</style>
   
