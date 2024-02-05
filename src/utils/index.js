@@ -277,3 +277,51 @@ export function copyValue(val) {
     }
   });
 }
+
+/**
+ * 参数拼接到url上
+ * @param {String} url  链接字符串
+ * @param {Object} data 参数对象
+ * @returns String 完整的链接
+ */
+function handleParamsToURL(url, data) {
+  if (!url) return;
+  if (typeof data !== "object" || Object.keys(data).length === 0) return;
+  // 若链接尾部带有"/"则替换成为空字符，拼接"?"字符
+  url = url.replace(/\/$/, "") + "?";
+  // 参数字符串
+  let params = "";
+  for (const [name, value] of Object.entries(data)) {
+    params += "&" + name + "=" + encodeURIComponent(value); // 将参数转变成为url编码后通过&name=参数拼接
+  }
+  // 利用正则去除参数中的第一个&符号
+  params = params.replace(/^&/, "");
+  url = url + params;
+  return url; // 返回URL
+}
+
+/**
+ * JSONP方式进行get网络请求
+ * @param {String} url   请求链接
+ * @param {Object} data  参数键值对
+ * @returns Object Promise对象
+ */
+export function jsonp(url, data) {
+  // 返回一个Promise
+  return new Promise((resolve, reject) => {
+    // 监听捕获代码是否抛出错误
+    try {
+      const body = document.body; // 获取到body节点对象
+      const script = document.createElement("script"); // 添加body对象中
+      window[data.cb] = function (res) {
+        resolve(res); // 处理Promise激活微任务
+      };
+      url = handleParamsToURL(url, data);
+      script.src = url;
+      body.appendChild(script); // body标签后添加script标签程序自动加载内容
+      body.removeChild(script); // 获得参数后移除添加的script标签
+    } catch (e) {
+      reject(e); // 发生错误时返回拒绝的Promise对象
+    }
+  });
+}

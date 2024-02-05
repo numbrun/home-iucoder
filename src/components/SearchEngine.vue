@@ -22,7 +22,10 @@
 
     <a-auto-complete class="search-ipt" v-model:value="searchWord" :options="options" style="font-size: 20px"
       placeholder="输入搜索内容" :bordered="false" :allow-clear="true" @keyup.enter="enterSubmit" @select="onSelect"
-      @search="onSearch">
+      @search="onSearch" popupClassName="list-class">
+      <template #option="{ value: val }">
+        <span>{{ val }}</span>
+      </template>
       <template #clearIcon>
         <close-outlined style="background: transparent;font-size: 16px;" />
       </template>
@@ -39,6 +42,8 @@
 import { useSearchEngineStore } from '@/store/searchEngine'
 import { SearchEngineTy } from '~/searchEngine'
 import { CloseOutlined } from '@ant-design/icons-vue';
+// import { getBaiduSearch } from "@/api";
+import { jsonp } from "@/utils/index";
 
 interface MockVal {
   value: string;
@@ -47,11 +52,28 @@ interface MockVal {
 const visible = ref(false);
 const searchWord = ref('');
 const options = ref<MockVal[]>([]);
-
+// 获取热词
+function getSearchList() {
+  // 排除搜索词为空的情况
+  if (searchWord.value == '') {
+    options.value = []
+    return;
+  }
+  jsonp('https://www.baidu.com/su', {
+    wd: searchWord.value,
+    cb: 'handleSuggestion',
+  }).then((res: Object | any) => {
+    if (res.s && res.s.length > 0) {
+      let _arr = <MockVal[]>([]);
+      res.s.forEach((element: any) => {
+        _arr.push(mockVal(element))
+      });
+      options.value = _arr
+    }
+  });
+}
 const onSearch = (searchText: string) => {
-  options.value = !searchText
-    ? []
-    : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+  getSearchList()
 };
 const mockVal = (str: string, repeat = 1): MockVal => {
   return {
@@ -59,6 +81,8 @@ const mockVal = (str: string, repeat = 1): MockVal => {
   };
 };
 const onSelect = (value: string) => {
+  if (!value) return
+  enterSubmit()
 };
 
 //点击搜索引擎
@@ -79,7 +103,7 @@ const currentSearchEngine = computed(() => useSearchEngineStore().getCurrentSear
   width: 100%;
   max-width: 600px;
   margin: 3vh auto 20px;
-  height: 46px ;
+  height: 46px;
   border-radius: 100px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.8);
@@ -151,5 +175,9 @@ const currentSearchEngine = computed(() => useSearchEngineStore().getCurrentSear
   .ant-select-clear {
     background: transparent;
   }
+}
+
+.list-class {
+  background-color: rgba(255, 255, 255, 0.8);
 }
 </style>

@@ -4,7 +4,7 @@
     <div class="sd-top"></div>
     <div class="sd-mid flex flex-direction  align-center">
       <Link :to="resolvePath(routes[0].path, item.path)" v-for="item in routes[0].children" :key="item.path">
-      <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '80px' }">
+      <a-dropdown :trigger="['contextmenu']" :overlayStyle="{ 'width': '90px' }">
         <div style="margin: 5px 0;" class="sd-mid-div flex flex-direction justify-around align-center"
           :class="{ active: selectedRouteName === item.name }" @click.stop="chooseBlock(item.name!)">
           <AntdIcon :name="item.meta?.icon" :style="atdIconSelected(item.name!)"></AntdIcon>
@@ -14,7 +14,10 @@
           <a-menu>
             <!-- <a-menu-item key="1">编辑</a-menu-item> -->
             <!-- stop -->
-            <a-menu-item key="2" @click="deleteRoute(item)">删除</a-menu-item>
+            <a-menu-item key="2" @click="deleteRoute(item)">
+              <AntdIcon :name="'DeleteOutlined'" :style="'font-size: 14px'" />
+              <span style="float: right;">删除</span>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
