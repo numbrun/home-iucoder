@@ -23,7 +23,9 @@ function initAsnycRoutes() {
 //前置守卫
 router.beforeEach((to: RouteLocationNormalized, from, next) => {
   if (useAppStore().getIsInitAsyncRoutes) {
-    useGridsStore().SYNC_SELECTED_GRIDS(to.meta.title as string);
+    console.log('to.meta.title',to.meta.title)
+    useGridsStore().SYNC_SELECTED_GRIDS('主页');
+    // useGridsStore().SYNC_SELECTED_GRIDS(to.meta.title as string);
     next();
   } else {
     initAsnycRoutes();

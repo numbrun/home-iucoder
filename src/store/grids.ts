@@ -8,7 +8,10 @@ export const useGridsStore = defineStore('grids', {
     }
   },
   getters: {
-    getSelectedGrids: (state) => state.selectedGrids
+    //拿到当前图标
+    getSelectedGrids: (state) => {
+      return state.selectedGrids
+    }
   },
   actions: {
     SYNC_SELECTED_GRIDS(name: string) {
@@ -18,7 +21,7 @@ export const useGridsStore = defineStore('grids', {
         }
       })
     },
-
+    //选定_网格_修改
     SELECTED_GRIDS_MODIFY(name: string, actionObj: { action: 'DEC' | 'INC', grid: GridComponentTy | navIconConfig }) {
       this.$patch((state) => {
         if (actionObj.action === 'DEC') {

@@ -114,20 +114,23 @@ const changeWallImg = () => {
   wallpaperStore.SET_CurrentWallpaper(wallpaperStore.getAllPictureWallpaper[currentId]);
 }
 function loadHomeJson() {
+
+  console.log('useGridsStore().getSelectedGrids.navIconConfig',useGridsStore().getSelectedGrids.navIconConfig)
+
   useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
     if (v.type == 'icon' || v.type == 'add') {
       addNewWidget(v);
     } else if (v.type == 'component') {
-      addComponent(v, i);
+      // addComponent2(v, i);
     }
   });
-  useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
-    if (v.type == 'component') {
-      addComponent(v, i);
-    }
-  });
-  addComponent2();
-  addComponent2();
+  // useGridsStore().getSelectedGrids.navIconConfig.forEach((v, i) => {
+  //   if (v.type == 'component') {
+  //     addComponent(v, i);
+  //   }
+  // });
+  // addComponent2();
+  // addComponent2();
 }
 function addComponent(row: navIconConfig, index) {
   let sizew = row.size.split('x')[0]
