@@ -56,13 +56,9 @@ onMounted(() => {
     float: false,
     disableResize: true,
     acceptWidgets: true, //接受从其他网格或外部拖动的小部件
-    // cellHeight: '120px',//一个单元格高度
-    // cellHeight: '8vh',
     minRow: 1,
-    // cellHeight: "70px",
-    // cellWidth: "70px",
-    margin: 0,
-    // cellHeight: 80,
+    cellHeight: "90px",//一个单元格高度
+    margin: 10,
     animate: false, // show immediate (animate: true is nice for user dragging though)
     columnOpts: {
       breakpointForWindow: true,  // test window vs grid size
@@ -150,6 +146,7 @@ function addComponent2() {
   const content: any = items[3]
   const itemDom = document.createElement("div");
   itemDom.setAttribute("id", "card_");
+  itemDom.setAttribute("style", "height: 100%;overflow: hidden;");
   // itemDom.style = 'height: 100%;'
   const app = createApp(HeadCalendar, { name: "xiaoming2" });
   app.mount("#card_");
@@ -195,12 +192,13 @@ function addNewWidget(option: any = {}) {
             onClick = 'handleClick(${JSON.stringify(option)})'
             style="height:100%;cursor: pointer;"
             class="flex flex-direction justify-center align-center">
-            <img src="${option.src}" style="width: 3.5vw; height: 3.5vw; border-radius: 20px;" class="shadow-md" />
-            <p style='filter: drop-shadow(0px 2px 7px rgba(0,0,0,.1));margin-top: 5px;text-shadow: 0 0 2px #0000004d;'
-              class="cl-ant-p sg-omit-sm text-white-sm">${option.name}</p>
+            <div  style=" height: 70%;"  title="${option.name}">
+              <img class="app-item-img" src="${option.src}"
+                style=" height: 100%; border-radius: 15px;" />
+            </div>
+            <p style='flex:1;filter: drop-shadow(0px 2px 7px rgba(0,0,0,.1));margin-top: 5px;text-shadow: 0 0 2px #0000004d;' class="cl-ant-p sg-omit-sm text-white-sm">${option.name}</p>
         </div>
-  `;
-
+      `;
   grid.addWidget({
     w: 1, h: 1,
     content: el,

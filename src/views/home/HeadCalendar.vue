@@ -70,8 +70,10 @@ onMounted(() => {
         .cal-top {
             font-size: 16px;
             color: #fff;
-            line-height: 46px;
             height: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: #ff5a5d;
         }
 
@@ -79,6 +81,9 @@ onMounted(() => {
             font-size: 46px;
             font-weight: 600;
             line-height: 78px;
+            // display: flex;
+            // align-items: center;
+            // justify-content: center;
             height: 42%;
         }
 
