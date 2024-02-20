@@ -31,7 +31,6 @@
       </a-menu>
     </template>
   </a-dropdown>
-  <!-- <test /> -->
 </template>
 
 <script lang="ts" setup>
@@ -39,10 +38,9 @@ import { GridStack } from 'gridstack';
 import SearchEngine from '@/components/SearchEngine.vue';
 import HeadDate from './HeadDate.vue';
 import HeadCalendar from './HeadCalendar.vue';
-import test from './test.vue';
 import BottomSentence from './BottomSentence.vue';
 import { useGridsStore } from '@/store/grids';
-import { defineProps, defineEmits, ref, onMounted, render, compile, createApp } from "vue";
+import { onMounted, createApp } from "vue";
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 import { useWallpaperStore } from '@/store/wallpaper';
 import { useModeStore } from '@/store/useMode';
