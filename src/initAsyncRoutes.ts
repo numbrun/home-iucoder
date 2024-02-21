@@ -24,8 +24,8 @@ function initAsnycRoutes() {
 router.beforeEach((to: RouteLocationNormalized, from, next) => {
   if (useAppStore().getIsInitAsyncRoutes) {
     console.log('to.meta.title',to.meta.title)
-    useGridsStore().SYNC_SELECTED_GRIDS('主页');
-    // useGridsStore().SYNC_SELECTED_GRIDS(to.meta.title as string);
+    useGridsStore().GET_CurrentIcon('主页');
+    // useGridsStore().GET_CurrentIcon(to.meta.title as string);
     next();
   } else {
     initAsnycRoutes();

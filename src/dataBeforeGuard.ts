@@ -36,7 +36,9 @@ export default abstract class DataBeforeGuard {
   //初始化路由
   static initHome() {
     if (!localStorage.getItem('HOME')) {
-      localStorage.setItem('主页', JSON.stringify(home));
+      if (!localStorage.getItem('主页')) {
+        localStorage.setItem('主页', JSON.stringify(home));
+      }
     }
   }
 }

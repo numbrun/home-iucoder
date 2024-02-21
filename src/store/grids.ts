@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
 
+//当前拖拽 icon
 export const useGridsStore = defineStore('grids', {
   state: () => {
     return {
@@ -14,7 +15,8 @@ export const useGridsStore = defineStore('grids', {
     }
   },
   actions: {
-    SYNC_SELECTED_GRIDS(name: string) {
+    //拿到当前地址设置的 ICON
+    GET_CurrentIcon(name: string) {
       this.$patch((state) => {
         if (name) {
           state.selectedGrids = JSON.parse(localStorage.getItem(name.toUpperCase())!)
@@ -38,6 +40,13 @@ export const useGridsStore = defineStore('grids', {
           }
         }
         localStorage.setItem(name.toUpperCase(), JSON.stringify(state.selectedGrids))
+      })
+    },
+    //设置存储当前图标位置
+    SET_navIconConfig(name: string, navIconConfig: navIconConfig[]): void {
+      this.$patch((state) => {
+        state.selectedGrids.navIconConfig = navIconConfig
+        localStorage.setItem(name, JSON.stringify(state.selectedGrids))
       })
     },
   }

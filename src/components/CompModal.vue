@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-button type="primary" @click="showModal">Open Modal</a-button>
+        <!-- <a-button type="primary" @click="showModal">Open Modal</a-button> -->
         <a-modal width="40%" :closable=false wrapClassName="comp-modal" ref="modalRef" v-model:open="open"
             :wrap-style="{ overflow: 'hidden' }" @ok="handleOk" :footer="null">
             <template #title>
@@ -30,17 +30,7 @@
                 </div>
             </template>
             <div class="modal-body">
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <slot name="content"></slot>
             </div>
             <template #modalRender="{ originVNode }">
                 <div :style="transformStyle">
@@ -53,6 +43,10 @@
 <script lang="ts" setup>
 import { ref, computed, CSSProperties, watch, watchEffect } from 'vue';
 import { useDraggable } from '@vueuse/core';
+
+
+
+
 const open = ref<boolean>(false);
 const modalTitleRef = ref<HTMLElement | null>(null);
 const showModal = () => {
@@ -62,6 +56,10 @@ const { x, y, isDragging } = useDraggable(modalTitleRef);
 const handleOk = (e: MouseEvent) => {
     open.value = false;
 };
+
+//对外抛出 不抛出拿不到
+defineExpose({ showModal })
+
 const startX = ref<number>(0);
 const startY = ref<number>(0);
 const startedDrag = ref(false);
@@ -120,7 +118,7 @@ const transformStyle = computed<CSSProperties>(() => {
         // background-image: url(https://images.unsplash.com/photo-1642428272104-0eb971cfe559?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwNTMwMDg1Mg&ixlib=rb-4.0.3&q=80&w=1080);
         // backdrop-filter: blur(10px) brightness(100%) contrast(100%) saturate(100%) grayscale(0%) sepia(0%);
 
-        background-color: rgba(255,255,255, .5);
+        background-color: rgba(255, 255, 255, .5);
         backdrop-filter: blur(20px);
 
     }

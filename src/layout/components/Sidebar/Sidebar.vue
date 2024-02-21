@@ -47,7 +47,7 @@ import AddGroupBtn from '@/components/AddGroupBtn.vue';
 import { isExternal, calcContrastColor } from '@/utils/validate';
 import { useWallpaperStore } from '@/store/wallpaper';
 import router from '@/router';
-const { proxy } = getCurrentInstance();
+const { proxy } = getCurrentInstance();//拿到this
 const route = useRoute();
 
 let sidebarThemeColor = ref(useWallpaperStore().getCurrentWallpaperThemeColor)
@@ -79,8 +79,6 @@ async function deleteRoute(item: any) {
 const appStore = useAppStore();
 
 const routes = computed(() => appStore.routes);
-
-console.log('routes', routes.value[0].children)
 
 // 二级子路由需要拼接path 例如：/noob-guide/account-login
 const resolvePath = (basePath: string, routePath: string) => {

@@ -12,7 +12,7 @@
       </div>
       <div v-else-if="item.type == 'component'" :key="item.component"
         class="comp-box flex flex-direction justify-center align-center">
-        <HeadCalendar />
+        <component :is="HeadCalendar" />
       </div>
     </template>
   </div>
@@ -29,7 +29,6 @@ const drag = ref(false)
 const el = ref()
 const list = ref([])
 onMounted(() => {
-  console.log('()..navIconConfig', useGridsStore().getSelectedGrids.navIconConfig)
   list.value = useGridsStore().getSelectedGrids.navIconConfig
 })
 
