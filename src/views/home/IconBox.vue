@@ -16,7 +16,7 @@
             </div>
         </template>
     </div>
-    <CompModal ref="CompModal2">
+    <CompModal ref="modalAdd">
         <template v-slot:content>
             <!--  插槽的内容放这里 -->
             12321321
@@ -39,7 +39,7 @@ onMounted(() => {
     list.value = useGridsStore().getSelectedGrids.navIconConfig
 })
 
-const CompModal2 = ref()
+const modalAdd = ref()
 
 const handleClick = (option: navIconConfig) => {
     if (option.type === "icon") {
@@ -49,7 +49,7 @@ const handleClick = (option: navIconConfig) => {
     }
     if (option.type === "add") {
         // 在组件mounted后，可以通过$refs访问到组件实例
-        console.log(' ', CompModal2.value.showModal())
+        console.log(' ', modalAdd.value.showModal())
     }
 }
 function openModal() {
