@@ -1,20 +1,12 @@
 {
   "navIconConfig": [
     {
-      "name": "天气",
+      "name": "日历",
       "component": "HeadCalendar",
       "type": "component",
-      "size": "2x1",
+      "size": "2x2",
       "sizeText": "中",
-      "id": "testtianqi"
-    },
-    {
-      "name": "天气",
-      "component": "HeadCalendar",
-      "type": "component",
-      "size": "2x1",
-      "sizeText": "中",
-      "id": "testtianqi"
+      "id": "testtianqi1"
     },
     {
       "url": "https://ai.taobao.com?pid=mm_54561194_2536750027_111828300388&union_lens=lensId%3APUB%401644727921%4021057ef3_09a7_17ef16c69e2_05aa%4001",
@@ -29,10 +21,10 @@
       "src": "https://files.codelife.cc/website/jd.svg"
     },
     {
-      "name": "天气2",
+      "name": "天气",
       "component": "weather",
       "type": "component",
-      "size": "2x1",
+      "size": "4x2",
       "sizeText": "大",
       "id": "testtianqi"
     },
@@ -47,14 +39,6 @@
       "url": "https://www.tmall.com/",
       "name": "天猫精选",
       "src": "https://files.codelife.cc/website/tmall.svg"
-    },
-    {
-      "name": "天气2",
-      "component": "weather",
-      "type": "component",
-      "size": "2x2",
-      "sizeText": "特大",
-      "id": "testtianqi"
     },
     {
       "url": "http://you.163.com/?from=itab.link",
@@ -121,6 +105,14 @@
       "type": "icon",
       "name": "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili",
       "src": "https://files.codelife.cc/website/bilibili.svg"
+    },
+    {
+      "name": "日历2",
+      "component": "HeadCalendar",
+      "type": "component",
+      "size": "2x2",
+      "sizeText": "中",
+      "id": "testtianqi2"
     },
     {
       "url": "http://www.12306.cn",

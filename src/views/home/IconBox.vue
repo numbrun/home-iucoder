@@ -11,7 +11,7 @@
                 </p>
             </div>
             <div v-else-if="item.type == 'component'" :key="item.component"
-                class="comp-box flex flex-direction justify-center align-center">
+                class="flex flex-direction justify-center align-center" :class="hanleCss(item.size)">
                 <component :is="initComp(item.component)" />
             </div>
         </template>
@@ -34,10 +34,16 @@ const drag = ref(false)
 const el = ref()
 const list: any = ref([])
 
-const initComp = (name:any ) =>{
+const initComp = (name: string) => {
     return defineAsyncComponent(() =>
         import(`../home/${name}.vue`)
     )
+}
+
+//处理模板组件
+const hanleCss = (size: string) => {
+    if (!size) return ''
+    return 'size' + size
 }
 
 onMounted(() => {
@@ -106,12 +112,27 @@ const sort = () => {
         padding: 10px 0px;
     }
 
-    .comp-box {
+    .size2x2 {
         grid-column: span 2;
+        // grid-column-start: span 2;
         grid-row: span 2;
-        grid-column-start: span 2;
-        grid-row-start: span 2;
+        // grid-row-start: span 2;
         height: 200px;
+        overflow: hidden;
+    }
+
+    .size2x1 {
+        grid-column: span 2;
+        grid-row: span 1;
+        height: 100px;
+        overflow: hidden;
+    }
+
+    .size4x2 {
+        grid-column: span 4;
+        grid-row: span 2;
+        height: 200px;
+        overflow: hidden;
     }
 }
 </style>
