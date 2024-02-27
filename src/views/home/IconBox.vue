@@ -12,7 +12,7 @@
             </div>
             <div v-else-if="item.type == 'component'" :key="item.component"
                 class="comp-box flex flex-direction justify-center align-center">
-                <component :is="HeadCalendar" />
+                <component :is="initComp(item.component)" />
             </div>
         </template>
     </div>
@@ -29,11 +29,16 @@ import { ref } from 'vue'
 import { useDraggable, type UseDraggableReturn } from 'vue-draggable-plus'
 import { useGridsStore } from '@/store/grids';
 import { GrideModuleTy, navIconConfig, GridComponentTy } from '~/grid'
-import HeadCalendar from '../home/HeadCalendar.vue';
+// import HeadCalendar from '../home/HeadCalendar.vue';
 const drag = ref(false)
 const el = ref()
 const list: any = ref([])
 
+const initComp = (name:any ) =>{
+    return defineAsyncComponent(() =>
+        import(`../home/${name}.vue`)
+    )
+}
 
 onMounted(() => {
     list.value = useGridsStore().getSelectedGrids.navIconConfig
@@ -48,6 +53,7 @@ const handleClick = (option: navIconConfig) => {
     if (option.type === "component") {
     }
     if (option.type === "add") {
+        debugger
         // 在组件mounted后，可以通过$refs访问到组件实例
         console.log(' ', modalAdd.value.showModal())
     }
