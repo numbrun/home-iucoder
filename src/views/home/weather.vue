@@ -14,7 +14,7 @@ window.WIDGET = {
     "background": "1",
     "dataColor": "fff",
     "borderRadius": "15",
-    "key": "fcd4fc1e48a144a483b7af74284229b8"
+    "key": "fcd4fc1e48a144a483b7af74284229b8",
     // 2b4e91a4f094492ea3c78e97c5e51594
   }
 }
@@ -23,6 +23,12 @@ onMounted(() => {
   setTimeout(() => {
     let document = window.document.querySelectorAll('.wv-lt-refresh')[0]
     document.style.display = 'none'
+
+    //禁用点击事件
+    let left = window.document.querySelector('.wv-v-h-col-left')
+    left.style.pointerEvents = 'none'
+    let right = window.document.querySelector('.wv-v-h-col-right')
+    right.style.pointerEvents = 'none'
   }, 100);
 });
 const weather = () => {
@@ -37,5 +43,7 @@ const weather = () => {
 .weather {
   width: 100%;
   height: 100%;
+  // cursor: pointer;
+  // pointer-events: none; /* 禁用点击事件 */
 }
 </style>
