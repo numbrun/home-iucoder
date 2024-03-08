@@ -1,9 +1,8 @@
-
 <template>
   <div class="weather">
     <div id="he-plugin-standard"></div>
   </div>
-</template>         
+</template>
 <script setup>
 window.WIDGET = {
   //宽：高=3:1
@@ -19,6 +18,7 @@ window.WIDGET = {
   }
 }
 onMounted(() => {
+  console.log(123221312);
   weather()
   setTimeout(() => {
     let document = window.document.querySelectorAll('.wv-lt-refresh')[0]

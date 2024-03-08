@@ -46,7 +46,7 @@ const draggable = useDraggable<UseDraggableReturn>(el, list, {
     })
   },
   onUpdate() {
-    console.log('update')
+    // console.log('update')
   }
 })
 

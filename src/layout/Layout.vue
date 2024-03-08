@@ -28,7 +28,6 @@ import { Sidebar, AppMain } from './components';
     width: $sideBarWidth !important;
     height: 100%;
     position: fixed;
-    font-size: 0;
     top: 0;
     bottom: 0;
     left: 0;

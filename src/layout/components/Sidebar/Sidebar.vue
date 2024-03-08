@@ -35,7 +35,10 @@
         </AntdIcon>
       </AddGroupBtn>
     </div>
-    <div class="sd-bottom"></div>
+    <div class="sd-bottom">
+      <AntdIcon name="SettingOutlined" @click="openSet"></AntdIcon>
+      <Setting ref="modalOpen" />
+    </div>
   </div>
 </template>
 
@@ -44,6 +47,8 @@ import path from 'path';
 import { useAppStore } from '@/store/app';
 import Link from './Link.vue';
 import AddGroupBtn from '@/components/AddGroupBtn.vue';
+import Setting from './Setting.vue'
+
 import { isExternal, calcContrastColor } from '@/utils/validate';
 import { useWallpaperStore } from '@/store/wallpaper';
 import router from '@/router';
@@ -95,6 +100,13 @@ const chooseBlock = (routeName: string) => {
   selectedRouteName.value = routeName!;
 };
 
+//父调字
+const modalOpen = ref()
+
+const openSet = () => {
+  modalOpen.value.data.visible = true
+};
+
 </script>
 
 <style scoped lang="scss">
@@ -103,6 +115,7 @@ const chooseBlock = (routeName: string) => {
   height: 100%;
   background-color: v-bind(sidebarThemeColor); //计算出背景色
   backdrop-filter: blur(2px);
+  position: relative;
 
   .sd-mid {
     width: 100%;
@@ -128,6 +141,14 @@ const chooseBlock = (routeName: string) => {
         }
       }
     }
+  }
+
+  .sd-bottom {
+    position: absolute;
+    bottom: 25px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 22px;
   }
 }
 </style>

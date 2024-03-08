@@ -23,7 +23,7 @@
         </template>
     </CompModal>
 </template>
-  
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useDraggable, type UseDraggableReturn } from 'vue-draggable-plus'
@@ -35,6 +35,7 @@ const el = ref()
 const list: any = ref([])
 
 const initComp = (name: string) => {
+    console.log('name', name)
     return defineAsyncComponent(() =>
         import(`../home/${name}.vue`)
     )
@@ -50,6 +51,7 @@ onMounted(() => {
     list.value = useGridsStore().getSelectedGrids.navIconConfig
 })
 
+//父调字
 const modalAdd = ref()
 
 const handleClick = (option: navIconConfig) => {
@@ -59,7 +61,6 @@ const handleClick = (option: navIconConfig) => {
     if (option.type === "component") {
     }
     if (option.type === "add") {
-        debugger
         // 在组件mounted后，可以通过$refs访问到组件实例
         console.log(' ', modalAdd.value.showModal())
     }
@@ -71,7 +72,7 @@ function openModal() {
 const draggable = useDraggable<UseDraggableReturn>(el, list, {
     animation: 150,
     onStart() {
-        console.log('start')
+        // console.log('start')
         drag.value = true
     },
     onEnd() {
@@ -81,7 +82,7 @@ const draggable = useDraggable<UseDraggableReturn>(el, list, {
         // })
     },
     onUpdate() {
-        console.log('update')
+        // console.log('update')
     }
 })
 
@@ -89,7 +90,7 @@ const sort = () => {
     list.value.sort((a, b) => a.id - b.id)
 }
 </script>
-  
+
 <style scoped lang="scss">
 .icon-scroll-content {
     display: grid;
@@ -136,7 +137,7 @@ const sort = () => {
     }
 }
 </style>
-  
+
 <style>
 .fade-move,
 .fade-enter-active,
